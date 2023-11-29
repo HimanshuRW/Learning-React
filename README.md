@@ -24,7 +24,7 @@ Welcome to my React learning journey repository! In this repository, I document 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/react-learning-journey.git
+   git clone https://github.com/HimanshuRW/Learning-React.git
 2. Every folder is itself like a mini project and got its own package.json .. so which project ypu want to run..you can go in that folder and install the packgaes: 
 
    ```bash
