@@ -4,25 +4,20 @@ Welcome to my React learning journey repository! In this repository, I document 
 
 ## Projects Overview
 
-- **Project 1:** [Project Name]
-  - 8.2 Stock markey
-  - Technologies used.
-  - Any key concepts learned.
+- **Tic Tac Toe:**[folder 7]
+  - Its an tic tac toe with beuatiful design.
+  - *Learnings - leart to useState hook*
 
-- **Project 2:** [Project Name]
-  - Brief description of the project.
-  - Technologies used.
-  - Any key concepts learned.
-
-...
+- **Stock Market:**[folder 8.2]
+  - Its an basic graph related application where it shows the data the currency (a variable) with respect to time and increase the price if we buy it and decrese if we sell.
+  - *Learnings - Integrating ChartJs with react, rendeing component every 2second with updated data*
 
 ## Folder Structure
 
-- `project-1/`: Contains the code and documentation for Project 1.
-- `project-2/`: Contains the code and documentation for Project 2.
-- `shared-components/`: Reusable components used across multiple projects.
-- `utils/`: Utility functions and scripts.
-- `...
+- `6 styling/`: I learned how to scope CSS to a certain component
+- `7 tic tac toe startring project/`: *(mini PROJECT)* made tic tak tow using UseState
+- `8.1 Refs and portals/`: Learn to use the useRef hook and how to make portals
+- `8.2 stock_market_app/`: *(mini PROJECT)* made very basic stock market playground with chart.js
 
 ## How to Use
 
