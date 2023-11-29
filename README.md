@@ -33,5 +33,6 @@ Welcome to my React learning journey repository! In this repository, I document 
 
    ```bash
    npm start
-   or
+  or
+  ```bash
    npm run dev
