@@ -1,0 +1,43 @@
+.mast{
+    list-style: none;
+    display: inline;
+    margin-right:60px;
+    font-size: 20px;
+    padding: 18px;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+} 
+
+.mast {
+    position: relative;
+}
+.mast::after,.mast::before{
+    content: '';
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    transition: all 0.5s linear;
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+}
+.mast::after{
+    left: 30%;
+    top: 30%;
+}
+.mast::before{
+    left: -30%;
+    top: -30%;
+}
+
+.mast:hover:after,.mast:hover::before{
+    transform: rotateZ(49deg) rotateX(241deg) rotateY(54deg);
+    left: 0%;
+}
+.mast:hover:after{
+    top: -30%;
+    background-color: rgba(127, 255, 212, 0.737);
+}
+.mast:hover::before{
+    top: 70%;
+    background-color: rgba(170, 255, 127, 0.737);
+}

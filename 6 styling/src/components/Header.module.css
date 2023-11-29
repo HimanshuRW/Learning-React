@@ -1,0 +1,19 @@
+.mast:hover{
+    border: 2px solid black;
+    font-weight: 400;
+    cursor: pointer;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: rgb(242, 246, 246);
+}
+ul{
+    display: flex;
+}
+
+.red{
+    color: red !important;
+}
