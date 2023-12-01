@@ -1,0 +1,82 @@
+.bars {
+    background-color: aquamarine;
+    border       : 3px solid white;
+    width           : 100%;
+    transition      : background-color 0.2s linear;
+}
+
+.normal {
+    background-color: aquamarine;
+}
+
+.now {
+    background-color: rgb(240, 104, 104);
+}
+
+.next {
+    background-color: rgb(213, 42, 42);
+}
+
+#container {
+    width          : 100%;
+    display        : flex;
+    flex-direction : row;
+    padding        : 3px;
+    border-radius  : 10px;
+    border-bottom  : 2px solid black;
+    justify-content: center;
+    align-items    : flex-end;
+    height         : 360px;
+}
+
+#page {
+    display       : flex;
+    flex-direction: column;
+    margin        : 20px auto;
+    width         : 60%;
+    align-items   : center;
+}
+
+button {
+    margin-top   : 20px;
+    padding      : 10px;
+    border       : 2px solid black;
+    border-radius: 10%;
+    outline      : none;
+
+}
+.swaping_pre{
+    animation: swap_pre 0.4s linear 0.2s forwards;
+    z-index: 5;
+}
+.swaping_pro{
+    animation: swap_pro 0.4s linear 0.2s forwards;
+    z-index: 4;
+}
+
+@keyframes swap_pre {
+    0% {
+        transform: scale(1) translateX(0%);
+    }
+    
+    50% {
+        transform: scale(1.05) translateX(50%);
+    }
+    
+    100% {
+        transform: scale(1) translateX(100%);
+    }
+} 
+@keyframes swap_pro {
+    0% {
+        transform: scale(1) translateX(0%);
+    }
+    
+    50% {
+        transform: scale(0.95) translateX(-50%);
+    }
+    
+    100% {
+        transform: scale(1) translateX(-100%);
+    }
+} 
