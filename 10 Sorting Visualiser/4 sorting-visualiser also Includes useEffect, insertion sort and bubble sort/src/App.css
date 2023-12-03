@@ -2,15 +2,18 @@
     background-color: aquamarine;
     border       : 1px solid white;
     width           : 100%;
-    transition      : background-color 0.001s linear;
+    /* transition      : background-color 0.001s linear; */
 }
 
-.normal {
+/* .normal {
     background-color: aquamarine;
-}
+} */
 
 .now {
     background-color: rgb(240, 104, 104);
+}
+.pink {
+    background-color: rgb(240, 104, 210)
 }
 
 .next {

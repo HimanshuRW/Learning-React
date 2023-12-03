@@ -2,7 +2,8 @@ import { useContext } from "react";
 import Animate_Context from "../store/Animate_Context";
 
 export default function Visual() {
-  const {array,step,playing} = useContext(Animate_Context);
+  const {array,step,playing,algo,iteration,current} = useContext(Animate_Context);
+  // console.log(algo,array);
   let highest = Math.max(...array);
   let lowest = Math.min(...array);
 
@@ -22,20 +23,28 @@ export default function Visual() {
     if(array[current_index]>array[current_index+1]) return true;
     return false;
   }
-  console.log(step);
 
   return (
     <div id="container">
         {array.map((current_val,index)=>{
             let my_height = get_height(current_val);
-            let my_class;
-            if(step==index) {
-              my_class="bars now";
-              if(are_swaping(index)) my_class += " swaping_pre";
-            } else if ((step+1)==index) {
-              my_class="bars next";
-              if(are_swaping(index-1)) my_class += " swaping_pro";
-            } else my_class="bars normal";
+            let my_class="bars";
+
+            if(algo=='bubble'){
+              if(step==index) {
+                my_class+=" now";
+                if(are_swaping(index)) my_class += " swaping_pre";
+              } else if ((step+1)==index) {
+                my_class+=" next";
+                if(are_swaping(index-1)) my_class += " swaping_pro";
+              } else my_class+=" normal";
+            } else if(algo=='ins'){
+              if(step==index) my_class+= ' now';
+            } else if(algo=='sel'){
+              if(step==index) my_class+= ' now';
+              else if(iteration==index) my_class+=' next';
+              else if(current==index) my_class+=' pink';
+            }
             return (
                 <div key={index} className={my_class} style={{height : `${my_height}px`
                 // , width : `${my_width}px`
