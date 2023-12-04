@@ -73,6 +73,7 @@ export default function Controls({ myarray, funs, algo }) {
   }
 
   function play_Bubble() {
+    console.log("bubble called");
     let output = bubble(current_state.array, iteration, step);
     if (Array.isArray(output)) {
       if (step < output.length - iteration - 2) {
@@ -104,7 +105,7 @@ export default function Controls({ myarray, funs, algo }) {
       }, current_state.speed * 1.5);
 
     }
-    console.log("in the use effect");
+    console.log("in the use effect of control.jsx which is game engine");
     return () => clearTimeout(timer);
   });
 
