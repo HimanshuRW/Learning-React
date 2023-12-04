@@ -1,0 +1,97 @@
+:root{
+    --myText_color : rgb(19, 4, 4); 
+    --myText_shadow : 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    --theme : #ff4da6;
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+}
+#page{
+    /* border: 1px solid tomato; */
+    /* box-shadow: 0px 0px 11px 1px rgba(255,99,71,0.75); */
+    /* padding: ; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+}
+h1,body{
+    color: var(--myText_color);
+    text-shadow: var(--myText_shadow);
+}
+
+#superSet{
+    display: flex;
+    /* border: 2px solid lime; */
+    /* align-items: center; */
+    width: 100%;
+    height: 370px;
+}
+#container{
+    position: relative;
+    border-bottom: 1px solid orange;
+    padding: 10px;
+    width: 100%;
+    margin-left: 110px;
+    border-radius: 4px;
+    /* display: flex; */
+    left:0px ;
+}
+.bars{
+    position: absolute;
+    left: 0px;
+    bottom: 8px;
+    width: 4px;
+    /* border: 1px solid white; */
+    background-color: #e27070;
+}
+#contols{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 180px;
+}
+h2 {
+  color: #999999;
+  font-weight: 400;
+  text-shadow: none;
+}
+.range {
+  height: 3px;
+  -webkit-appearance: none;
+  background: #e27070;
+}
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 5px solid #ffffff;
+  }
+  
+.btn{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    background-color: var(--theme);
+    padding: 5px 0px;
+    border: none;
+    outline: none;
+    /* box-shadow: var(--myText_shadow); */
+    border-radius: 5px;
+}
+
+.blueBar{
+    background-color: #74e6f7;
+    box-shadow: 0px 0px 0px 1px #74e6f7;
+}

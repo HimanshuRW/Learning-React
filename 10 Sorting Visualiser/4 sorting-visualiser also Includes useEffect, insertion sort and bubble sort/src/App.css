@@ -1,8 +1,11 @@
 .bars {
     background-color: aquamarine;
     border       : 1px solid white;
-    width           : 100%;
-    /* transition      : background-color 0.001s linear; */
+    width           : 10px;
+    transition      : background-color 0.001s linear;
+    /* transition : all 0.3s linear; */
+    /* position: absolute; */
+    /* bottom: 50px; */
 }
 
 /* .normal {
@@ -22,14 +25,15 @@
 
 #container {
     width          : 100%;
-    display        : flex;
-    flex-direction : row;
     padding        : 3px;
     border-radius  : 10px;
     border-bottom  : 2px solid black;
-    justify-content: center;
-    align-items    : flex-end;
     height         : 360px;
+    /* position: relative; */
+    display: flex;
+    align-items: end;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 #page {

@@ -10,7 +10,7 @@ import kya from './store/reducerFunc.js';
 let {intial_state,reducerFunc}=kya;
 
 let myTimer;
-let wait = 0;
+let wait = 1;
 
 function App() {
   const [current_state, callReducer] = useReducer(reducerFunc, intial_state);

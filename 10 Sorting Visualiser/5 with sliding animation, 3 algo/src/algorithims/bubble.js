@@ -1,0 +1,38 @@
+function clearAll() {
+  let barArr = document.getElementsByClassName("bars");
+  barArr = Array.from(barArr);
+  barArr.forEach((element) => {
+    element.className = "bars";
+  });
+}
+
+export default function bubble(arr, j, i) {
+  console.log("bubble : ",arr);
+
+  clearAll();
+  let b1 = document.getElementById('b' + i);
+  let b2 = document.getElementById('b' + (i + 1));
+
+  b1.classList += ' blueBar';
+  b2.classList += ' blueBar';
+
+
+  if (arr[i] > arr[i + 1]) {
+    let temp = arr[i];
+    arr[i] = arr[i + 1];
+    arr[i + 1] = temp;
+
+
+    b1.style.left = `${(i + 1) * 9 + 5}px`;
+    b2.style.left = `${i * 9 + 5}px`;
+
+    b1.id = 'b' + (i + 1);
+    b2.id = 'b' + i;
+  }
+
+  if (j < arr.length - 1) {
+    return arr;
+  } else {
+    return 0;
+  }
+}
