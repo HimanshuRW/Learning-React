@@ -104,6 +104,7 @@ export default function Controls({ myarray, funs, algo }) {
       }, current_state.speed * 1.5);
 
     }
+    console.log("in the use effect");
     return () => clearTimeout(timer);
   });
 
