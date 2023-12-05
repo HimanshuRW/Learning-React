@@ -51,7 +51,7 @@ function App() {
       <div id="page">
         <Choice changeAlgo={shift_fun} algo={current_state.algo} />
         <div id="superSet">
-          {render_controls && <Controls myarray={current_state.array} funs={funs} algo={current_state.algo} /> }
+          {render_controls && <Controls array={current_state.array} funs={funs} algo={current_state.algo} /> }
           <Visual array={current_state.array} />
         </div>
       </div >

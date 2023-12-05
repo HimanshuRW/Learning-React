@@ -8,6 +8,7 @@ function clearAll() {
 
 export default function bubble(arr, j, i) {
   console.log("bubble : ",arr);
+  console.log("bubble j : "+j+" i : "+i);
   
   clearAll();
   let b1 = document.getElementById('b' + i);

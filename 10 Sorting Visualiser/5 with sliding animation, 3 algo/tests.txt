@@ -1,0 +1,23 @@
+when that last element is not found
+thats when b9 is not found ... see the dom tree manually in developer tools
+and seee whats wrong
+
+and for once ... remove all the useEffects .. make a roung project and understand
+what exactly happens when the parent component state chnages .. what happens to child
+what happens to its states ... when the component is rendered .. when its use effects r rendered
+
+may be u r doing a mistake here .. that when parend state chnages... u should be using that parent state in child like visual and contols
+anf not creating yr own array bcz ... we just chainging array of state  but not calling set_state of parent
+and set state of parent will be only called when algo chnages or size chnages
+thus that will cause Visual to load again
+
+and keep track of values u affect like background color and ids
+bcz u need to reset then all when u call visual
+so make u can write a code for it ... without useEffect in visual before returning
+
+and in controls may be ... u r rendering the component twice.. one when parent reloaed
+and second bcz of useState of its own regarding array
+may be use can useEffect with array only to reset array when array chnages
+or or or better approad.. dont use states ... just use useEffect s it will be runned only only when 
+parent component reload that will cause to load Controls again and !! now every time parents load...
+first Contols will be unmounted ... so u can use useEffect cleanup funtion to reset the contols world

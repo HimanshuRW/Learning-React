@@ -26,14 +26,14 @@ export default function Controls({ myarray, funs, algo }) {
   });
 
   useEffect(() => {
-    console.log("yes");
+    console.log("array chnaged and new arr is ",myarray);
     setup(algo);
-    console.log(myarray);
     set_state({ ...current_state,array: [...myarray], playing: "pause" });
   }, [myarray]);
-
+  
   useEffect(() => {
     setup(algo);
+    set_state({ ...current_state, playing: "pause" });
   }, [algo]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Controls({ myarray, funs, algo }) {
     barArr.forEach((element) => {
       element.style.transition = `left ${
         (current_state.speed * 0.66) / 1000
-      }s linear`;
+      }s ease`;
     });
   }, [current_state.speed]);
 
@@ -105,7 +105,7 @@ export default function Controls({ myarray, funs, algo }) {
       }, current_state.speed * 1.5);
 
     }
-    console.log("in the use effect of control.jsx which is game engine");
+    console.log("game engine with iteration :"+iteration," step "+step+", arr",current_state.array);
     return () => clearTimeout(timer);
   });
 
@@ -118,6 +118,7 @@ export default function Controls({ myarray, funs, algo }) {
     myContainer.style.width = `${myContainerWidth}px`;
     myContainer.style.left = `${myContainerLeft}px`;
     funs.chnageSize(new_size);
+    
   }
 
   let click_handler;
