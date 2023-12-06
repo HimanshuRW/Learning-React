@@ -29,6 +29,7 @@ h1,body{
 
 #superSet{
     display: flex;
+    flex-direction: row-reverse;
     /* border: 2px solid lime; */
     /* align-items: center; */
     width: 100%;
@@ -52,7 +53,7 @@ h1,body{
     /* border: 1px solid white; */
     background-color: #e27070;
 }
-#contols{
+#controls{
     display: flex;
     flex-direction: column;
     position: relative;

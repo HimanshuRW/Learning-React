@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 
 let b1 = 10;
 let b2 = 10;
@@ -7,7 +7,7 @@ console.log("in the child b file");
 
 export default function ChildA({propB}){
     b1++;
-    const [current_state,set_state]= useState(b2);
+    const current_state = useContext(My_Context);
 
     useEffect(()=>{
         console.log("in the use Effect of ChildB");
