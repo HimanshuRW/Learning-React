@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import  update_btn_icon from './components/mini_components/update_btn_icon.js';
 import bubble from './algorithims/bubble.js';
 import green from './components/mini_components/green.js';
+import selection from './algorithims/selection.js';
 
 import './App.css';
 
@@ -45,7 +46,7 @@ function App() {
   if(control_btn!=null) update_btn_icon(playing);
 
   if(current_state.algo=='bubble'){ iteration=0; step=0; }
-  else if(current_state.algo=='selection'){ iteration=1; step=1; }
+  else if(current_state.algo=='selection'){ iteration=0; step=1; current=0; }
   else if(current_state.algo=='insertion'){ iteration=1; step=1; }
   else console.log("now this is not possible .... current_state.algo : "+current_state.algo);
 
@@ -76,6 +77,7 @@ function App() {
   function gameEngine() {
     timer = setTimeout(()=>{
       if(current_state.algo=='bubble') play_Bubble();
+      else if(current_state.algo=='selection') play_Selection();
       // ... all algos in else if else blocks
 
       if(playing=='playing') gameEngine();
@@ -91,6 +93,17 @@ function App() {
         iteration++;
       }
       myArr = [...output];
+    }else over(output);
+  }
+  function play_Selection() {
+    let output = selection(myArr, iteration, step, current);
+    if(typeof(output)=='object'){
+      //  { new_arr: arr, iteration, step, min_index }
+      myArr = [...output.new_arr];
+      iteration = output.iteration;
+      step = output.step;
+      current = output.min_index;
+
     }else over(output);
   }
 
