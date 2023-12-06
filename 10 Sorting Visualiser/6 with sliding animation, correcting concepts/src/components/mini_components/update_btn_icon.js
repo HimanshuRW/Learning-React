@@ -1,6 +1,6 @@
-export default function My_Btn({playing}) {
-    if (playing == "playing") {
-      return (
+function get_btn_icon(playing) {
+  if (playing == "playing") {
+    return `
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -13,9 +13,9 @@ export default function My_Btn({playing}) {
             d="M8 5a2 2 0 0 0-2 2v10a2 2 0 1 0 4 0V7a2 2 0 0 0-2-2zm8 0a2 2 0 0 0-2 2v10a2 2 0 1 0 4 0V7a2 2 0 0 0-2-2z"
           ></path>
         </svg>
-      );
-    } else if (playing == "pause") {
-      return (
+      `;
+  } else if (playing == "pause") {
+    return `
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -28,9 +28,9 @@ export default function My_Btn({playing}) {
             d="M7 17.259V6.741a1 1 0 0 1 1.504-.864l9.015 5.26a1 1 0 0 1 0 1.727l-9.015 5.259A1 1 0 0 1 7 17.259Z"
           ></path>
         </svg>
-      );
-    } else if (playing == "reset") {
-      return (
+      `;
+  } else if (playing == "reset") {
+    return `
         <svg
           fill="none"
           height="24"
@@ -53,6 +53,11 @@ export default function My_Btn({playing}) {
             strokeWidth="2"
           />
         </svg>
-      );
-    }
+      `;
   }
+}
+
+export default function update_btn_icon(playing){
+  let myBtn = document.getElementById("control_btn");
+  myBtn.innerHTML=get_btn_icon(playing);
+}

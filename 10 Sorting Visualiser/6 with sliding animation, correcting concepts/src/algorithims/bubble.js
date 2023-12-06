@@ -7,7 +7,7 @@ function clearAll() {
 }
 
 export default function bubble(arr, j, i) {
-  console.log("bubble : ",arr);
+  // console.log("bubble : ",arr);
   console.log("bubble j : "+j+" i : "+i);
   
   clearAll();
@@ -26,12 +26,19 @@ export default function bubble(arr, j, i) {
     arr[i + 1] = temp;
 
 
-    console.log("swaped");
+    // console.log("swaped");
     b1.style.left = `${(i + 1) * 9 + 5}px`;
     b2.style.left = `${i * 9 + 5}px`;
 
-    b1.id = 'b' + (i + 1);
+    console.log("exchnage ");
+    console.log("b1",b1);
+    console.log("b2",b2);
+    b1.id = 'bb' + (i + 1);
     b2.id = 'b' + i;
+    b1.id = 'b' + (i + 1);
+    console.log("id swaped ");
+    console.log("b1",b1);
+    console.log("b2",b2);
   }
 
   if (j < arr.length - 1) {

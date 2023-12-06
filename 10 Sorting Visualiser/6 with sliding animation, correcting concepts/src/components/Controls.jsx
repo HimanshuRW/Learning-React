@@ -1,20 +1,9 @@
-import { memo } from "react";
-import My_Btn from "./mini_components/My_Btn.jsx";
+import update_btn_icon from "./mini_components/update_btn_icon.js";
 import Slider from "./mini_components/Slider.jsx";
 import bubble from "../algorithims/bubble.js";
 
-let iteration;
-let step;
-let current;
 let timer;
 let speed = 950;
-
-function setup(myAlgo) {
-  if (myAlgo == "bubble") {
-    iteration = 0;
-    step = 0;
-  }
-}
 
 function green() {
   let barArr = document.getElementsByClassName("bars");
@@ -24,17 +13,21 @@ function green() {
   });
 }
 
-
 export default function Controls({ array, funs, algo }) {
-  console.log("contolsssssssssssssssssssssssssss");
-  console.log(array);
-  console.log("------------");
+  let iteration;
+  let step;
 
-  // now u need to reload the btn component
-  // also in play , pause event
-
+  function setup(myAlgo) {
+    if (myAlgo == "bubble") {
+      iteration = 0;
+      step = 0;
+    }
+  }
   let playing = "pause";
   setup(algo);
+
+  console.log("controls loaded -> iteration: "+iteration+"  step:"+step);
+  console.log("controls loaded -> arr: ",array);
 
   function pauseSorting() {
     console.log("pause sorting");
@@ -62,12 +55,11 @@ export default function Controls({ array, funs, algo }) {
     green();
     setup(algo);
     playing = "reset";
-    // now u need to reload the btn component
-    // also in play , pause event
+    update_btn_icon(playing);
   }
 
   function play_Bubble() {
-    console.log("bubble called");
+    // console.log("bubble called");
     let output = bubble(array, iteration, step);
     if (Array.isArray(output)) {
       if (step < output.length - iteration - 2) {
@@ -81,14 +73,14 @@ export default function Controls({ array, funs, algo }) {
   }
 
   function gameEngine() {
-    console.log("game engine");
+    // console.log("game engine");
     if (playing == "playing") {
       timer = setTimeout(() => {
         if (algo == "bubble") play_Bubble();
         gameEngine();
-      },speed * 1.5);
+      }, speed * 1.5);
     } else {
-      console.log("playing false hai : "+playing);
+      console.log("playing false hai : " + playing);
     }
   }
 
@@ -104,10 +96,15 @@ export default function Controls({ array, funs, algo }) {
   }
 
   function click_handler() {
-    if (playing == "playing") { pauseSorting() } 
-    else if (playing == "pause") { playSorting() }
-    else if (playing == "reset") { funs.reset_fun() }
-    else {
+    if (playing == "playing") {
+      pauseSorting();
+      update_btn_icon(playing);
+    } else if (playing == "pause") {
+      playSorting();
+      update_btn_icon(playing);
+    } else if (playing == "reset") {
+      funs.reset_fun();
+    } else {
       console.log("bhai yeh to possible nahi hai ab");
     }
   }
@@ -115,11 +112,20 @@ export default function Controls({ array, funs, algo }) {
   return (
     <div id="contols">
       <Slider change_speed={change_speed} change_size={change_size} />
-      <button className="btn" onClick={click_handler}>
-        <My_Btn_child playing={playing} />
+      <button className="btn" onClick={click_handler} id="control_btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          id="play"
+        >
+          <path
+            fill="#000"
+            d="M7 17.259V6.741a1 1 0 0 1 1.504-.864l9.015 5.26a1 1 0 0 1 0 1.727l-9.015 5.259A1 1 0 0 1 7 17.259Z"
+          ></path>
+        </svg>
       </button>
     </div>
   );
 }
-
-const My_Btn_child = memo(My_Btn);
