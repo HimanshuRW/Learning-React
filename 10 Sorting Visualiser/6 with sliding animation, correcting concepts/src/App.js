@@ -7,6 +7,7 @@ import  update_btn_icon from './components/mini_components/update_btn_icon.js';
 import bubble from './algorithims/bubble.js';
 import green from './components/mini_components/green.js';
 import selection from './algorithims/selection.js';
+import insertion from './algorithims/insertion.js';
 
 import './App.css';
 
@@ -27,7 +28,8 @@ function App() {
     // better put a condition with playing ... bcz like if bubble sorted half.. then shifting algo is not good...
     // so may be always refresh array when chnages
     reset_array();
-    // clearTimeout(timer);
+    playing="pause";
+    clearTimeout(timer);
     if (current_state.algo == 'bubble') set_state({ array: [...intial_array], algo: 'insertion' });
     if (current_state.algo == 'insertion') set_state({ array: [...intial_array], algo: 'selection' });
     if (current_state.algo == 'selection') set_state({ array: [...intial_array], algo: 'bubble' });
@@ -47,7 +49,7 @@ function App() {
 
   if(current_state.algo=='bubble'){ iteration=0; step=0; }
   else if(current_state.algo=='selection'){ iteration=0; step=1; current=0; }
-  else if(current_state.algo=='insertion'){ iteration=1; step=1; }
+  else if(current_state.algo=='insertion'){ iteration=1; step=0; current=1; }
   else console.log("now this is not possible .... current_state.algo : "+current_state.algo);
 
   // ----------------------------------------------------------------------
@@ -78,6 +80,7 @@ function App() {
     timer = setTimeout(()=>{
       if(current_state.algo=='bubble') play_Bubble();
       else if(current_state.algo=='selection') play_Selection();
+      else if(current_state.algo=='insertion') play_Insertion();
       // ... all algos in else if else blocks
 
       if(playing=='playing') gameEngine();
@@ -103,6 +106,17 @@ function App() {
       iteration = output.iteration;
       step = output.step;
       current = output.min_index;
+
+    }else over(output);
+  }
+  function play_Insertion() {
+    let output = insertion(myArr, iteration, step, current);
+    if(typeof(output)=='object'){
+      //  { new_arr: arr, iteration, step, min_index }
+      myArr = [...output.new_arr];
+      iteration = output.iteration;
+      step = output.step;
+      current = output.current;
 
     }else over(output);
   }
