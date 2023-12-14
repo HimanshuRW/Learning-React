@@ -5,7 +5,7 @@ let a2 = 10;
 
 console.log("in the child a file");
 
-export default function ChildA({propA}){
+export default function ChildA({propA,parentUpdate}){
     a1++;
     useEffect(()=>{
         a2++;
@@ -18,7 +18,7 @@ export default function ChildA({propA}){
     console.log("in the function child A");
 
     return (
-        <h2>
+        <h2 onClick={parentUpdate}>
             {console.log("in the rendering of A")}
             a1: {a1} a2: {a2}  propA : {propA}
         </h2>

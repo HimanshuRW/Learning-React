@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ChildA from './components/ChildA.jsx';
+import ChildB from './components/ChildB.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <App />
+    <App>
+       <ChildA propA={currentState} parentUpdate={update} />
+      <ChildB propB={currentState} />
+    </App>
   // </React.StrictMode>
 );
 

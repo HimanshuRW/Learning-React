@@ -1,15 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import { Fragment, useEffect, useState } from 'react';
-import ChildA from './components/ChildA.jsx'
-import ChildB from './components/ChildB.jsx'
+import ChildA from './components/ChildA.jsx';
+import ChildB from './components/ChildB.jsx';
+import MyContext from './store/My_Context.jsx';
 
 let p ="parent";
 
 
 console.log("in the parent file");
 
-function App() {
+function App({children}) {
   const [currentState,set_state] = useState(1000);
 
   console.log("in the parent starting funtion");
@@ -27,13 +28,16 @@ function App() {
     set_state(before => before +1);
   }
   console.log("in the parent end funtion");
+
+  let contextValue = {current_parent_state:currentState,set_parent_state:set_state};
   return (
-    <Fragment>
+    <MyContext.Provider value={contextValue}>
       {console.log("in the rendering of parent")}
       <h1 onClick={update} >Parent -  state : {currentState}    p : {p}</h1>
-      <ChildA propA={currentState} />
-      <ChildB propB={currentState} />
-    </Fragment>
+      {/* <ChildA propA={currentState} parentUpdate={update} />
+      <ChildB propB={currentState} /> */}
+      {children}
+    </MyContext.Provider>
   );
 }
 
