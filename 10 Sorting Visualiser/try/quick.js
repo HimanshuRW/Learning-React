@@ -10,4 +10,4 @@ function quick(arr) {
         }
         swap(i,j);
     }
-}
+} 
