@@ -1,22 +1,104 @@
-nav{
-  padding: 40px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Inter:wght@700&family=Josefin+Sans&family=Playpen+Sans&family=Roboto:wght@500&display=swap');
+:root {
+  --apnaBlue  : #29b4ff;
+  --apnaVoilet: #4258fa;
+  --apnaIndigo: #db3bf4;
 }
-nav a {
-  margin: 0px 30px;
-  height: 50px;
-  width: 50px;
-  display: grid;
+
+body {
+  background-color: black;
+  font-family: 'Inconsolata', monospace;
+font-family: 'Inter', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Playpen Sans', cursive;
+font-family: 'Roboto', sans-serif;
+}
+
+#dancingIcon-area {
+  width      : 100%;
+  height     : 200px;
+  display    : grid;
   place-items: center;
-  background-color: transparent;
+}
+
+#dancingIcon-container {
+  position     : relative;
+  /* border       : 2px solid white; */
+  left: -5%;
+  --size       : 100px;
+  height       : var(--size);
+  width        : var(--size);
   border-radius: 50%;
-  display: grid;
-  place-items: center;
+  overflow     : hidden;
+  z-index: 8;
+  animation: iconDance2 3s linear  infinite forwards;
 }
-nav a svg{
-  height: 35px;
-  width: 35px;
+
+#dancingIcon {
+  position: absolute;
+  /* background: linear-gradient(217deg, var(--apnaBlue), rgba(0, 157, 255, 0) 70.71%), linear-gradient(127deg, var(--apnaVoilet), rgba(255, 0, 179, 0) 70.71%), linear-gradient(336deg, var(--apnaIndigo), rgba(115, 115, 236, 0) 70.71%); */
+  background: rgb(252,56,241);
+background: linear-gradient(228deg, rgba(252,56,241,1) 0%, rgba(67,123,224,1) 54%, rgba(45,252,253,1) 100%);
+  height: 150%;
+  width: 150%;
+  animation: iconDance 3s ease  infinite forwards;
+  z-index: 3;
+  border-radius: 50%;
+  left: -10%;
+  top: -10%;
+}
+#dancingIcon-container img {
+  width   : 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 4;
+}
+
+@keyframes iconDance {
+
+  0%,
+  100% {
+    left : -10%;
+    top : -10%;
+  }
+  
+  30% {
+    left : -10%;
+    top : -45%;
+  }
+  60% {
+    left : -43%;
+    top : -10%;
+  }
+}
+@keyframes iconDance2 {
+  0%,
+  100% {
+    transform: translate(20%,20%);
+  }
+  
+  30% {
+    transform: translate(20%,80%);
+    /* left : -10%;
+    top : -40%; */
+  }
+  60% {
+    transform: translate(80%,40%);
+    /* left : -40%;
+    top : -20%; */
+  }
+}
+
+.gradientBtn{
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  padding: 20px;
+  background: rgb(252,56,241);
+background: linear-gradient(228deg, rgb(181, 37, 174) 0%, rgb(34, 94, 205) 54%, rgb(27, 156, 156) 100%);
+  color : white;
+  font-size: 1rem;
+  font-weight: bold;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Root,{rootLoader} from './pages/Root.js';
 import Login from './pages/Login.js';
-import Profile from './components/Profile.jsx';
+import Landing from './pages/Land.js';
 import './App.css';
 
 const router = createBrowserRouter([
@@ -12,12 +12,16 @@ const router = createBrowserRouter([
     loader : rootLoader,
     id : 'user-cookie',
     children : [
-      { path : '/', element : <Profile /> },
+      { path : '/', element : <h1>Profile</h1> },
     ]
   },
   {
     path : "/login",
     element : <Login />
+  },
+  {
+    path : "/landing",
+    element : <Landing />
   }
 ])
 

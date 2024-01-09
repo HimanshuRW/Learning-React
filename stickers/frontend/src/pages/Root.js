@@ -1,10 +1,9 @@
 import { Fragment } from 'react';
 import {redirect,Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 
 export default function Root() {
   return <Fragment>
-    <Navbar />
+    <h1>Navbar here</h1>
     <Outlet />
   </Fragment>
 }
@@ -20,7 +19,7 @@ export const rootLoader = async ()=>{
       img : '/profilePics/himanshu.jpg'
     }
     return user;
-  } else return redirect("/login");
+  } else return redirect("/landing");
 };
 
 function checkAuthentication() {

@@ -1,11 +1,10 @@
 import { Fragment } from "react";
+import DancingIcon from "../miniComponents/DancingIcon.jsx";
 
 export default function Login(){
-    function save(){
-        localStorage.setItem("authToken","himash");
-    }
     return <Fragment>
         <h1>Login Page</h1>
-        <button onClick={save}>save</button>
+        <DancingIcon />
+        <button>save</button>
     </Fragment>
 }
