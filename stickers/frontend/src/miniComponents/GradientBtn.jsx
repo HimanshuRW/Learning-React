@@ -1,5 +1,5 @@
-export default function GradientBtn({children}){
+export default function GradientBtn({children,isVisible,onClick}){
     return (
-        <button className="gradientBtn">{children}</button>
+        <button onClick={onClick} className={`gradientBtn strechBtn btn animated-component ${isVisible ? 'visible' : 'hidden-down'}`}>{children}</button>
     )
 }

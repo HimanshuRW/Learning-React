@@ -1,27 +1,24 @@
 import React from 'react';
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-import Root,{rootLoader} from './pages/Root.js';
-import Login from './pages/Login.js';
-import Landing from './pages/Land.js';
+import authCheck from './helpers/authCheck.js';
+import Landing,{action as landingAction} from './pages/unAuth/Landing.jsx';
 import './App.css';
 
 const router = createBrowserRouter([
   {
     path : "/",
-    element : <Root />,
-    loader : rootLoader,
-    id : 'user-cookie',
+    element : <h1>Himanshu</h1>,
+    loader : authCheck,
     children : [
-      { path : '/', element : <h1>Profile</h1> },
+      { path : '/', element : <h2>Home</h2> },
+      { path : '/a', element : <h2>a</h2> },
+      { path : '/b', element : <h1>b</h1> }
     ]
   },
   {
-    path : "/login",
-    element : <Login />
-  },
-  {
     path : "/landing",
-    element : <Landing />
+    element : <Landing />,
+    action : landingAction
   }
 ])
 
