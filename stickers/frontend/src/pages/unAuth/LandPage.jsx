@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import Intro from "./Intro.jsx";
-import { Fragment } from "react";
+
 export default function LandPage() {
     const [page,setPage]=useState('landing');
     let MyPage = ()=>(<h1>hi</h1>);

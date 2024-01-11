@@ -28,7 +28,7 @@ export default async function registerAction(formData) {
       localStorage.setItem("authToken",data.token);
       console.log("saved");
       
-      return redirect("/profile");
+      return redirect("/");
     } catch (error) {
       console.log("server issue");
       return {for:"register",msg : "Server Issue..."};

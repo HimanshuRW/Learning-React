@@ -1,5 +1,12 @@
 import { redirect } from "react-router-dom";
 export default async function loginAction(formData) {
+  localStorage.setItem("authToken","himanshu");
+      
+      return redirect("/");
+
+      // --------------------------------------------------
+      // --------------------------------------------------
+      // --------------------------------------------------
     const formBody = {
       title: formData.get("email"),
       image: formData.get("pass"),
@@ -21,7 +28,7 @@ export default async function loginAction(formData) {
       localStorage.setItem("authToken",data.token);
       console.log("saved");
       
-      return redirect("/profile");
+      return redirect("/");
     } catch (error) {
       return {for:"login",msg : "Server Issue..."};
     }

@@ -3,13 +3,21 @@ import DancingIcon from "../../miniComponents/DancingIcon.jsx";
 import LandPage from "./LandPage.jsx";
 import registerAction from "../../helpers/register.js";
 import loginAction from "../../helpers/login.js";
+import { styled } from "styled-components";
+import cssCode from "./cssExporter.js";
+
+const CSSWrapper = styled.div`
+  ${cssCode}
+`;
 
 export default function Landing() {
   return (
-    <div id="landingPage">
-      <DancingIcon />
-      <LandPage />
-    </div>
+    <CSSWrapper>
+      <div id="landingPage">
+        <DancingIcon />
+        <LandPage />
+      </div>
+    </CSSWrapper>
   );
 }
 
