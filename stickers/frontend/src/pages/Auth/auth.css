@@ -28,6 +28,8 @@
     align-items     : center;
     justify-content : space-between;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 #navIcons {
@@ -36,7 +38,7 @@
     align-items    : center;
     justify-content: center;
     position       : relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .imgHolder {
@@ -183,6 +185,7 @@
 }
 .bk_elements{
     position: absolute;
+    transition: all 0.3s linear;
 }
 #auth_triangle{
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -234,4 +237,15 @@
         border-radius: 67% 33% 28% 72% / 59% 52% 48% 41% ;
         /* transform: rotate(360deg); */
     }
+}
+
+#authPage_backgroud .chartBk:nth-child(1){
+    transform: rotate(260deg)scale(1.1);
+    left: 0%;
+    top: 10%;
+    z-index: 0;
+}
+#authPage_backgroud .chartBk:nth-child(2){
+    left: 90%;
+    top: 50%;
 }

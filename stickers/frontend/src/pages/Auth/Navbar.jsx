@@ -7,6 +7,7 @@ import Loading from "../../miniComponents/Loading.jsx";
 import Loading2 from "../../miniComponents/Loading2.jsx";
 
 export default function Navbar() {
+  console.log("navbar component");
   const {state} = useNavigation();
   const [page, setPage] = useState({
     path: "/",
@@ -28,6 +29,9 @@ export default function Navbar() {
     setPage({ path: to, num: glowNum });
     navigate(to);
   }
+  let bkClassNames = "bk_elements";
+  if(state=="loading") bkClassNames += " loading-bk";
+  if(page.path=="/chart") bkClassNames += " chartBk";
   return (
     <div id="authPages">
       <div id="navbar">
@@ -68,8 +72,8 @@ export default function Navbar() {
         <img src="/imgs/logoutIcon.png" alt="" onClick={logout} />
       </div>
       <div id="authPage_backgroud">
-        <span id="auth_triangle" className={state=="loading" ? "bk_elements loading-bk" : "bk_elements static-bk"}></span>
-        <span id="auth_oval" className={state=="loading" ? "bk_elements loading-bk" : "bk_elements static-bk"}></span>
+        <span id="auth_triangle" className={bkClassNames}></span>
+        <span id="auth_oval" className={bkClassNames}></span>
         <div id="authPage_wrapper">
           {state!=="loading"? <Outlet /> : <Loading />}
         </div>

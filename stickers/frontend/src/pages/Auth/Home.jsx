@@ -14,6 +14,7 @@ function ProfileCard({ data }) {
 }
 
 export default function Home() {
+  console.log("loaded");
   const data = useLoaderData();
   console.log(data);
   console.log("himanshu");
@@ -28,26 +29,49 @@ export default function Home() {
     </div>
   );
 }
-async function loadData(){
+
+// async function loadData(){
+//     const token = localStorage.getItem("authToken");
+//   if (token == null) return redirect("/landing");
+//   try {
+//     const response = await fetch("http://localhost:8080/token/" + token);
+//     if (!response.ok) {
+//       return redirect("/landing");
+//     }
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     // return redirect("/landing");
+//     // todo : throw err to error page
+//     return {
+//       name: "Himanshu Rawat",
+//       email: "himanshurw@gmail.com",
+//       stickers: 22,
+//     };
+//   }
+// }
+function loadData(){
+  return new Promise((resolve,reject)=>{
     const token = localStorage.getItem("authToken");
-  if (token == null) return redirect("/landing");
-  try {
-    const response = await fetch("http://localhost:8080/token/" + token);
-    if (!response.ok) {
-      return redirect("/landing");
+    if (token == null) reject("/landing");
+    fetch("http://localhost:8080/token/" + token)
+    .then(response=>{
+      if (!response.ok) {
+        reject("/landing");
+      }
+      response.json().then(data=>resolve(data));
+    }).catch(err=>{
+      let data = {
+        name: "Himanshu Rawat",
+        email: "himanshurw@gmail.com",
+        stickers: 22,
+      };
+      resolve(data);
     }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    // return redirect("/landing");
-    // todo : throw err to error page
-    return {
-      name: "Himanshu Rawat",
-      email: "himanshurw@gmail.com",
-      stickers: 22,
-    };
-  }
+    );
+  });
 }
 export const loader = async () => {
+  console.log("inside outter loader");
     return loadData(); // its a promise tey to resolve
 }

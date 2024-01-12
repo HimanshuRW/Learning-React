@@ -1,6 +1,7 @@
 import {redirect } from 'react-router-dom';
 
 async function authCheck() {
+    console.log("in the auth Check");
     const authToken = localStorage.getItem('authToken');
     if (authToken == null) return redirect("/landing");
 
