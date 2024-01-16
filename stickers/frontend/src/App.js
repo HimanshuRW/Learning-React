@@ -7,7 +7,7 @@ import Home,{loader as homeLoader} from "./pages/Auth/Home.jsx";
 import History from './pages/Auth/History.jsx';
 import Users from './pages/Auth/Users.jsx';
 import Share from './pages/Auth/Share.jsx';
-import Chart from './pages/Auth/Chart.jsx';
+import Chart,{loader as chartLoader} from './pages/Auth/ChartPage.jsx';
 import './App.css';
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     loader : authCheck,
     children : [
       { index : true, element : <Home />,loader:homeLoader },
-      { path : '/chart', element : <Chart /> },
+      { path : '/chart', element : <Chart />,loader:chartLoader },
       { path : '/share', element : <Share /> },
       { path : '/history',element: <History /> },
       { path : '/users', element : <Users /> }

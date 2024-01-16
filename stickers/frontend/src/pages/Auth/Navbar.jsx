@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import "./auth.css";
+import "./navbar.css";
 import ImageHolder from "../../miniComponents/ImageHolder.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -74,8 +74,10 @@ export default function Navbar() {
       <div id="authPage_backgroud">
         <span id="auth_triangle" className={bkClassNames}></span>
         <span id="auth_oval" className={bkClassNames}></span>
+        {/* <span id="ball" className={bkClassNames}>
+          <Ball /></span> */}
         <div id="authPage_wrapper">
-          {state!=="loading"? <Outlet /> : <Loading />}
+          {state!=="loading"? <Outlet /> : <Loading2 />}
         </div>
       </div>
     </div>

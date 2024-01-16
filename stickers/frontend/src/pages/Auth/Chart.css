@@ -1,0 +1,387 @@
+:root {
+    --blocks      : #212245;
+    --dullWhite   : #8988d1;
+    --activeWhite : rgb(225, 213, 255);
+    --myWhite     : rgb(191, 191, 208);
+    --dullbtn     : #383764;
+    --start       : #6325ad;
+    --mid         : #3e3ec8;
+    --end         : rgb(5, 121, 234);
+    /* --end         : rgb(79, 167, 255); */
+    --myPink      : #e328ef;
+    --darkbtn     : #2e2e52;
+    --success     : rgb(144, 238, 144);
+    --fail        : rgb(255, 99, 71);
+    --gold : #ffd700;
+    --loadingColor: var(--dullWhite);
+}
+
+#chartPage {
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+    flex-direction : row;
+    height         : 100vh;
+}
+
+#chartPage>* {
+    /* height: 90%; */
+    /* border: 2px solid salmon; */
+}
+
+#graph_container {
+    width          : 60%;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: space-between;
+    height         : 80%;
+}
+
+#graphBtns {
+    display        : flex;
+    width          : 80%;
+    /* height      : 100%; */
+    justify-content: flex-end;
+    align-items    : center;
+    position       : relative;
+    padding        : 1rem 2rem;
+    z-index        : 3;
+}
+
+#graphBtns::before {
+    border-radius: 8px;
+    content      : '';
+    width        : 100%;
+    height       : 100%;
+    position     : absolute;
+    opacity      : 0.5;
+    left         : 0;
+    top          : 0;
+    background   : var(--blocks);
+    background   : linear-gradient(to right bottom,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.203));
+    backdrop-filter: blur(1rem);
+    z-index        : 1;
+}
+
+#graphBtnIcon {
+    margin-right    : auto;
+    margin-left     : 0px !important;
+    color           : transparent !important;
+    position        : relative;
+    background-color: transparent;
+
+}
+
+#graphBtnIcon::after {
+    content            : '';
+    position           : absolute;
+    top                : 50%;
+    left               : 50%;
+    width              : 50%;
+    height             : 50%;
+    transform          : translate(-50%, -50%);
+    background-image   : url("http://localhost:3000/imgs/trend.png");
+    background-position: center;
+    background-size    : cover;
+}
+
+#graphBtns button {
+    margin-left     : 3rem;
+    padding         : 0.5rem 0.8rem;
+    border-radius   : 0.8rem;
+    border          : none;
+    outline         : none;
+    background-color: var(--dullbtn);
+    color           : var(--dullWhite);
+    font-weight     : 600;
+    transition      : all 0.2s linear;
+    position        : relative;
+    z-index         : 4;
+}
+
+#graphBtns .graphBtn_active {
+    background-image: linear-gradient(to right, var(--start), var(--mid), var(--end));
+    color           : var(--activeWhite);
+}
+
+#graphBtns .graphBtn_unactive:hover {
+    color     : var(--activeWhite);
+    box-shadow: 0px 0px 3px 2px var(--myPink);
+}
+
+#sidePart {
+    /* border: 2px solid salmon; */
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: space-between;
+    height         : 65%;
+    width          : 20%;
+}
+
+.showcase {
+    width         : 100%;
+    display       : flex;
+    align-items   : center;
+    flex-direction: column;
+}
+
+.priceBar {
+    border-radius   : 1rem;
+    background-color: var(--blocks);
+    background      : #212245a6;
+    /* opacity      : 0; */
+    width           : 100%;
+    padding         : 1rem;
+    margin-bottom   : 1rem;
+    position        : relative;
+    z-index         : 3;
+    /* color        : var(--myWhite); */
+    color           : #fff;
+    color           : gold;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    font-weight     : 400;
+    /* box-shadow   : 0px 0px 5px 3px var(--dullWhite) */
+}
+
+.showCoin {
+    position: relative;
+}
+
+.showCoin::after {
+    content            : '';
+    position           : absolute;
+    margin-left        : 0.2rem;
+    top                : 0;
+    left               : 100%;
+    height             : 100%;
+    width              : 2rem;
+    background         : transparent;
+    background-image   : url("http://localhost:3000/imgs/ethereumGold.png");
+    background-position: center;
+    background-size    : contain;
+    background-repeat  : no-repeat;
+}
+
+.transect_container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    width     : 100%;
+    /* border : 1px solid #0579ea; */
+    margin-top: 5rem;
+    position  : relative;
+    /* border : 1px solid #e328ef; */
+    height    : 20rem;
+}
+
+.transect_container button {
+    border-radius: 1rem;
+    width        : 100%;
+    padding      : 1rem;
+    height       : 3rem;
+    font-weight  : 600;
+    font-size    : 1rem;
+    /* position  : absolute; */
+    top          : 0;
+    z-index      : 3;
+    border       : none;
+    outline      : none;
+    cursor       : pointer;
+    transition   : all 0.4s linear;
+}
+
+.fade-right {
+    transform: translateX(-110%);
+    opacity  : 0;
+}
+
+.transect_container button:hover {
+    box-shadow: 0px 0px 5px 3px var(--dullWhite);
+}
+
+#sellBtn {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    background-color: var(--darkbtn);
+}
+
+.success {
+    color: var(--success);
+}
+
+.fail {
+    color: var(--fail)
+}
+
+.transect_container .upBtn {
+    top: 0;
+}
+
+.transect_container .downBtn {
+    top: 4.5rem;
+}
+
+.transect_container .inputWrapper {
+    border       : 2px solid rgba(255, 217, 0, 0.548);
+    border-radius: 1rem;
+    overflow   : hidden;
+    transition   : all 0.3s linear;
+    position     : absolute;
+    height       : 3rem;
+    width        : 100%;
+
+}
+
+.transect_container input {
+    width           : 100%;
+    transform       : translateX(20%);
+    padding         : 0.9rem 0 1rem 1rem;
+    font-weight     : 600;
+    font-size       : 1rem;
+    outline         : none;
+    border          : none;
+    transition      : all 0.4s linear;
+    background-color: var(--dullbtn);
+    background-color: #3837648a;
+    color           : var(--activeWhite);
+    position        : absolute;
+}
+.transect_container > p:nth-child(1){
+    color: var(--fail);
+    top: -2rem;
+}
+.transect_container .inputWrapper::before {
+    content            : '';
+    height             : 100%;
+    width              : 8%;
+    position           : absolute;
+    top                : 50%;
+    left               : 10%;
+    transform          : translate(-50%, -50%);
+    background-image   : url("http://localhost:3000/imgs/ethereumGold.png");
+    background-size    : contain;
+    background-position: center;
+    background-repeat  : no-repeat;
+}
+
+.transect_container p {
+    transition: all 0.3s linear;
+    color     : var(--myWhite);
+    text-align: center;
+    top       : 9rem;
+    cursor    : pointer;
+    transition: all 0.3 linear;
+}
+
+.transect_container>* {
+    position: absolute;
+    width   : 100%;
+    left    : 0;
+}
+
+#buyBtn {
+    background-image: linear-gradient(to right, var(--start), var(--mid), var(--end));
+    /* background   : transparent; */
+    color           : #fff;
+    /* border       : 1px solid sandybrown; */
+    position        : relative;
+    overflow        : hidden;
+    /* display      : flex;
+    align-items     : center;
+    justify-content : center; */
+    padding         : 1rem;
+}
+
+#buyBtn>div {
+    position       : absolute;
+    left           : 50%;
+    top            : 0;
+    transform      : translateX(-50%);
+    width          : 100%;
+    height         : 100%;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    transition     : all 0.3s linear;
+}
+
+.hidden-right-Btn {
+    transform: translateX(100%) !important;
+    opacity  : 0;
+    color    : transparent;
+    cursor: default !important;
+}
+
+.hidden-left-Btn {
+    transform: translateX(-110%) !important;
+    opacity  : 0;
+    color    : transparent;
+    cursor: default !important;
+}
+
+#buyBtn .split {
+    padding        : 0 2rem;
+    justify-content: space-between;
+}
+
+/* -------- dot revolution ----------------- */
+.dot-revolution {
+    position           : relative;
+    top                : 40%;
+    width              : 10px;
+    height             : 10px;
+    border-radius      : 5px;
+    /* background-color: #9880ff; */
+    background-color   : var(--loadingColor);
+    color              : var(--loadingColor);
+}
+
+.dot-revolution::before,
+.dot-revolution::after {
+    content : "";
+    display : inline-block;
+    position: absolute;
+}
+
+.dot-revolution::before {
+    left               : 0;
+    top                : -15px;
+    width              : 10px;
+    height             : 10px;
+    border-radius      : 5px;
+    /* background-color: #9880ff; */
+    background-color   : var(--loadingColor);
+    color              : var(--loadingColor);
+    transform-origin   : 5px 20px;
+    animation          : dot-revolution 1.4s linear infinite;
+}
+
+.dot-revolution::after {
+    left            : 0;
+    top             : -30px;
+    width           : 10px;
+    height          : 10px;
+    border-radius   : 5px;
+    background-color: var(--loadingColor);
+    color           : var(--loadingColor);
+    transform-origin: 5px 35px;
+    animation       : dot-revolution 1s linear infinite;
+}
+
+@keyframes dot-revolution {
+    0% {
+        transform: rotateZ(0deg) translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: rotateZ(360deg) translate3d(0, 0, 0);
+    }
+}
