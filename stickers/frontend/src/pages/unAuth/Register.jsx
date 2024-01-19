@@ -12,7 +12,7 @@ export default function Register({ setPage }) {
     return ()=>{
       dancingIconArea.className="";
       content.className="";
-    }
+    } 
   },[]);
   const navigation = useNavigation();
   const isSubmmiting = navigation.state === "submitting";

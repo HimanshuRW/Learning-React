@@ -34,7 +34,7 @@ async function loadData(){
   try {
     const token = localStorage.getItem("authToken");
     if (token == null) return redirect("/landing");
-    const response = await fetch("http://localhost:8080/token/" + token);
+    const response = await fetch("http://localhost:8080/user/" + token);
       if (!response.ok) {
         return redirect("/landing");
       }

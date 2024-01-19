@@ -2,17 +2,30 @@ import { Outlet, useNavigation } from "react-router-dom";
 import "./navbar.css";
 import ImageHolder from "../../miniComponents/ImageHolder.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../miniComponents/Loading.jsx";
 import Loading2 from "../../miniComponents/Loading2.jsx";
 
 export default function Navbar() {
   console.log("navbar component");
   const {state} = useNavigation();
+  const location = useLocation();
+
+  function getGlowNum(path) {
+    let glowNum = 0;
+    if (path == "/") glowNum = 1;
+    else if (path == "/chart") glowNum = 2;
+    else if (path == "/share") glowNum = 3;
+    else if (path == "/history") glowNum = 4;
+    else glowNum = 5;
+    return glowNum;
+  }
+
   const [page, setPage] = useState({
-    path: "/",
-    num: 1,
+    path: location.pathname,
+    num: getGlowNum(location.pathname),
   });
+
   const navigate = useNavigate();
 
   function logout() {
@@ -20,12 +33,7 @@ export default function Navbar() {
     navigate("/landing");
   }
   function navFunction(to) {
-    let glowNum = 0;
-    if (to == "/") glowNum = 1;
-    else if (to == "/chart") glowNum = 2;
-    else if (to == "/share") glowNum = 3;
-    else if (to == "/history") glowNum = 4;
-    else glowNum = 5;
+    let glowNum = getGlowNum(to);
     setPage({ path: to, num: glowNum });
     navigate(to);
   }

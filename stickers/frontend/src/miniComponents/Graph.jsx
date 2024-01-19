@@ -1,78 +1,90 @@
-// import React from "react";
-// import { Line } from "react-chartjs-2";
-// import "chart.js/auto"; // Import 'chart.js/auto' to use the new syntax for scales
-
-// const MyChart = ({ graphData }) => {
-//   console.log("chart rendering");
-//   const chartData = {
-//     labels: ["January", "February", "March", "April", "May", "June", "July"],
-//     datasets: [
-//       {
-//         label: "My First Dataset",
-//         data: [65, 59, 80, 81, 56, 55, 40],
-//         backgroundColor: "rgba(75,192,192,0.2)",
-//         borderColor: "rgba(75,192,192,1)",
-//         borderWidth: 1,
-//         lineTension: 0.3,
-//         fill: true,
-//       },
-//     ],
-//   };
-
-//   const options = {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
-//     },
-//   };
-
-//   return <Line data={chartData} options={options} />;
-// };
-
-// export default MyChart;
-
-// ----------------------------------------------------------------------
-
 import React, { useEffect, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto"; // Import 'chart.js/auto' to use the new syntax for scales
 
-const MyChart = ({ graphData }) => {
+const monthsArray = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+const weekArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+// timestamp = "01-02-2024 18:34";
+function getDate(timestamp){
+  const [day,month,rest] = timestamp.split("-");
+  let myStr = `${day} ${monthsArray[month-1]}`;
+  return myStr;
+}
+function getDay(timestamp) {
+  const [datePart,timePart] = timestamp.split(" ");
+  const [date,month,year] = datePart.split("-");
+  const myDate = new Date(year,month,date);
+  const day = myDate.getDay();
+  const weekDay = weekArray[day];
+  if(weekDay==0) return "";
+  else return weekDay;
+}
+function getHour(timestamp) {
+  const [datePart,timePart] = timestamp.split(" ");
+  return timePart;
+}
+function getMonth(timestamp) {
+  const [datePart,timePart] = timestamp.split(" ");
+  const [date,month,year] = datePart.split("-");
+  console.log("date : "+date+", month : "+month+", year : "+year);
+  const monthIndex = parseInt(month)-1;
+  return monthsArray[monthIndex];
+}
+
+const MyChart = ({ graphData,avg,range }) => {
+  console.log("Yay finally inside the MyChart compononet in graph.jsx file with grapghData as : ",graphData);
   const chartRef = useRef(null);
   let chartInst = null;
 
+  // Parse timestamp to JavaScript Date object
+  const xData = graphData.map(item => {
+    if(range=="day") return getHour(item.timestamp);
+    else if(range=="month") return getDate(item.timestamp);
+    else if(range=="week") return getDay(item.timestamp);
+    else return getMonth(item.timestamp);
+  });
+  const yData = graphData.map(item => {
+    return item.price;
+  });
+
   useEffect(() => {
-    chartInst = chartRef.current;
-    chartInst.canvas.addEventListener("mousemove", (e) =>
-      crosshairLine(chartInst, e)
-    );
+    // if (chartRef.current) {
+      chartInst = chartRef.current;
+      console.log("ref : ", chartRef);
+      chartInst.canvas.addEventListener("mousemove", (e) =>
+        crosshairLine(chartInst, e)
+      );
+    // }
   }, []);
 
   console.log("chart rendering");
+  const dates = ["2022-11-06", "2022-11-07", "2022-11-08"];
+  console.log("xData : ",xData);
   const chartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    // labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: xData,
     datasets: [
       {
         label: "My First Dataset",
-        data: [65, 59, 30, 81, 56, 55, 40],
+        // data: [65, 59, 30, 81, 56, 55, 40],
+        data: yData,
         borderWidth: 1,
         lineTension: 0.3,
         fill: {
           target: {
-            value: graphData.avg,
+            value: avg,
           },
           below: (context) => {
             const chart = context.chart;
             const { ctx, chartArea, data, scales } = chart;
             if (!chartArea) return null;
-            return belowGradient(ctx, chartArea, data, scales, graphData.avg);
+            return belowGradient(ctx, chartArea, data, scales, avg);
           },
           above: (context) => {
             const chart = context.chart;
             const { ctx, chartArea, data, scales } = chart;
             if (!chartArea) return null;
-            return aboveGradient(ctx, chartArea, data, scales, graphData.avg);
+            return aboveGradient(ctx, chartArea, data, scales, avg);
           },
         },
 
@@ -80,7 +92,7 @@ const MyChart = ({ graphData }) => {
           const chart = context.chart;
           const { ctx, chartArea, data, scales } = chart;
           if (!chartArea) return null;
-          return getGradient(ctx, chartArea, data, scales, graphData.avg);
+          return getGradient(ctx, chartArea, data, scales, avg);
         },
       },
     ],
@@ -101,14 +113,14 @@ const MyChart = ({ graphData }) => {
       ctx.lineWidth = 1;
       ctx.setLineDash([1, 5]);
       ctx.strokeStyle = "rgba(191, 191, 208,0.5)";
-      ctx.moveTo(left, y.getPixelForValue(graphData.avg));
-      ctx.lineTo(right, y.getPixelForValue(graphData.avg));
+      ctx.moveTo(left, y.getPixelForValue(avg));
+      ctx.lineTo(right, y.getPixelForValue(avg));
       ctx.stroke();
       ctx.closePath();
 
       // ctx.beginPath();
       // ctx.fillStyle = "rgba(191, 191, 208,1)";
-      // ctx.fillRect(0,y.getPixelForValue(graphData.avg),left,20);
+      // ctx.fillRect(0,y.getPixelForValue(avg),left,20);
       // ctx.closePath();
 
       ctx.font = "11px sans-serif";
@@ -116,7 +128,7 @@ const MyChart = ({ graphData }) => {
       ctx.fillText(
         "Your Average",
         right - 53,
-        y.getPixelForValue(graphData.avg)
+        y.getPixelForValue(avg)
       );
     },
   };
@@ -126,6 +138,21 @@ const MyChart = ({ graphData }) => {
       y: {
         beginAtZero: true,
       },
+      // x: {
+      //   type: "time",
+      //   time: {
+      //     unit: "day", // You can change this to 'month', 'week', etc.
+      //     displayFormats: {
+      //       day: "MMM D", // Format for days
+      //       month: "MMM", // Format for months
+      //       week: "MMM D", // Format for weeks
+      //     },
+      //   },
+      //   title: {
+      //     display: true,
+      //     text: "Timeline",
+      //   },
+      // },
     },
   };
 
@@ -183,10 +210,9 @@ function crosshairLine(chart, e) {
     canvas,
     ctx,
     chartArea: { left, right, top, bottom },
-    scales : {x,y}
+    scales: { x, y },
   } = chart;
   ctx.save();
-  console.log(e);
 
   chart.update("none");
   ctx.restore();
@@ -199,14 +225,14 @@ function crosshairLine(chart, e) {
     ctx.lineWidth = 1;
     ctx.setLineDash([3, 3]);
     ctx.strokeStyle = "rgba(191, 191, 208,0.5)";
-  
+
     //horizontal line
     ctx.beginPath();
-    ctx.moveTo(left+4, Y);
+    ctx.moveTo(left + 4, Y);
     ctx.lineTo(right, Y);
     ctx.stroke();
     ctx.closePath();
-  
+
     //vertical line
     ctx.beginPath();
     ctx.strokeStyle = "rgba(191, 191, 208,0.5)";
@@ -214,13 +240,12 @@ function crosshairLine(chart, e) {
     ctx.lineTo(X, bottom);
     ctx.stroke();
     ctx.closePath();
-  
+
     //label
     ctx.font = "11px sans-serif";
     ctx.fillStyle = "rgba(79, 167, 255,1)";
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
-    ctx.fillText(y.getValueForPixel(Y).toFixed(1), left-4, Y);
-    
+    ctx.fillText(y.getValueForPixel(Y).toFixed(1), left - 4, Y);
   } else canvas.style.cursor = "default";
 }

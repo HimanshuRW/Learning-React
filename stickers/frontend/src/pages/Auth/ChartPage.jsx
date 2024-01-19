@@ -5,8 +5,7 @@ import Chart from "../../components/Chart.jsx";
 import { Fragment, Suspense } from "react";
 
 function SidePart({ data }) {
-  console.log("in the sidePart comp");
-  console.log("data is : ", data);
+  const profit = (((data.price)/(data.avg)-1)*100).toFixed(2);
   return (
     <div id="sidePart">
       <div className="showcase">
@@ -19,7 +18,7 @@ function SidePart({ data }) {
           <span>{data.coins}</span>
         </div>
       </div>
-      <Transect profit={data.profit} showSell={data.coins>0} totalCoins={data.coins} price={data.price} />
+      <Transect profit={profit} showSell={data.coins>0} totalCoins={data.coins} price={data.price} />
     </div>
   );
 }
@@ -29,7 +28,7 @@ export default function ChartPage() {
 
   return (
     <div id="chartPage">
-      <Chart />
+      <Chart avg={data.avg} />
       <Suspense fallback={<h2 style={{ textAlign: "center" }}>Loading....</h2>}>
         <Await resolve={data}>
           {(resolvedData) => <SidePart data={resolvedData} />}
@@ -59,11 +58,10 @@ async function loadData() {
     };
   } catch (error) {
     // error page
-    console.log("returning the data now and then ---");
     return {
-      price: 200,
+      price: 70,
       coins: 2,
-      profit : 40
+      avg: 80
     };
   }
 }

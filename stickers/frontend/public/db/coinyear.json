@@ -1,0 +1,14 @@
+[
+    { "timestamp": "07-02-2023 07:00", "price": 80 },
+    { "timestamp": "07-03-2023 07:00", "price": 60 },
+    { "timestamp": "07-04-2023 07:00", "price": 70 },
+    { "timestamp": "07-05-2023 07:00", "price": 110 },
+    { "timestamp": "07-06-2023 07:00", "price": 130 },
+    { "timestamp": "07-07-2023 07:00", "price": 120 },
+    { "timestamp": "07-08-2023 07:00", "price": 160 },
+    { "timestamp": "07-09-2023 07:00", "price": 142 },
+    { "timestamp": "07-10-2023 07:00", "price": 100 },
+    { "timestamp": "07-11-2023 07:00", "price": 70 },
+    { "timestamp": "07-12-2023 07:00", "price": 90 },
+    { "timestamp": "07-01-2024 07:00", "price": 71 }
+]
