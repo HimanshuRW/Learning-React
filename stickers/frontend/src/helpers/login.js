@@ -1,9 +1,9 @@
 import { redirect } from "react-router-dom";
 export default async function loginAction(formData) {
 
-  // localStorage.setItem("authToken", "himanshu");
-  // console.log("loginAction");
-  // return redirect("/");
+  localStorage.setItem("authToken", "himanshu");
+  console.log("loginAction");
+  return redirect("/");
 
   // --------------------------------------------------
   // --------------------------------------------------

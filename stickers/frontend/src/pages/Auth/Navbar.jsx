@@ -5,8 +5,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../../miniComponents/Loading.jsx";
 import Loading2 from "../../miniComponents/Loading2.jsx";
+import {useSelector,useDispatch} from 'react-redux';
+import {counterActions} from '../../redux/store.js';
 
 export default function Navbar() {
+  const userDetails = useSelector(state=> state.user.details);
+  console.log("working : ",userDetails);
   console.log("navbar component");
   const {state} = useNavigation();
   const location = useLocation();
