@@ -1,5 +1,5 @@
-export default function ErrorPage(){
+export default function ErrorPage({msg}){
     return (
-        <h1>Error ho gaya</h1>
+        <h1>Error ho gaya : {msg}</h1>
     )
 }

@@ -385,3 +385,7 @@
         transform: rotateZ(360deg) translate3d(0, 0, 0);
     }
 }
+.chartErr{
+    position: relative;
+    top: 40%;
+}

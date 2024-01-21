@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Graph from "../miniComponents/Graph.jsx";
+import getChartData from "../apis/getChartData.js";
 
 export default function Chart({avg}){
     const [range,setRange] = useState("day");
@@ -9,25 +10,10 @@ export default function Chart({avg}){
         set_graphData(null);
         async function getData(){
             try {
-                // let response = await fetch("http://localhost:8080/chart/"+range);
-                let response = await fetch("http://localhost:3000/db/coin"+range+".json");
-                let body = await response.json(); 
-                console.log("body is hereeeeeeeeeeeeeeee ",body);  
-                set_graphData(body); 
+                let response = await getChartData(range);
+                set_graphData(response); 
             } catch (err) {
-                setTimeout(()=>{
-                    let sampleData = [
-                        { timestamp: "01-01-2024 18:30", price: 100 },
-                        { timestamp: "02-01-2024 19:00", price: 120 },
-                        { timestamp: "03-01-2024 19:30", price: 60 },
-                        { timestamp: "04-01-2024 20:00", price: 70 },
-                        { timestamp: "05-01-2024 20:30", price: 50 },
-                        { timestamp: "06-01-2024 20:30", price: 180 },
-                        { timestamp: "07-01-2024 20:30", price: 110 },
-                        // Add more data as needed
-                    ];
-                    set_graphData(sampleData);
-                },2);
+                set_graphData({success : false, msg: "Server Issue... Try again later !"})
             }
         }
         getData();
@@ -42,7 +28,7 @@ export default function Chart({avg}){
     
     return (
         <div id="graph_container">
-            {grapghData==null ? <LoadingGraph /> : <Graph graphData={grapghData} range={range} avg={avg} />}
+            {grapghData==null ? <LoadingGraph /> :(grapghData.success? <Graph graphData={grapghData.chartData} range={range} avg={avg} /> : <Err msg={grapghData.msg} />)}
             {/* {grapghData==null ? <LoadingGraph /> : <h1>is it my mistake that i cant get u out of my head !!!</h1>} */}
             <div id="graphBtns">
                 <button id="graphBtnIcon" className="graphBtn_active">Icon</button>
@@ -57,5 +43,7 @@ export default function Chart({avg}){
 
 function LoadingGraph(){
     return <div class="dot-revolution"></div>
-    // return <div id="traffic-chart"></div>
+}
+function Err({msg}){
+    return <div class="chartErr">Error : {msg}</div>
 }

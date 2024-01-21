@@ -5,18 +5,15 @@ const userSlice = createSlice({
     initialState: {
         details: null,
         // payload will look like this
-        // details : {
+        // initialState : {
         //     name : "Himanshu",
         //     email : "himanshurw@gmail.com",
         //     coins : 2,
         //     avg : 80
         // },
-        test : "pass",
-        history: null
     },
     reducers: {
         setUserDetails(state, userData) { state.details = userData.payload },
-        setHistory(state,historyData) { state.history = historyData.payload }
     }
 });
 

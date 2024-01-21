@@ -5,16 +5,28 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../../miniComponents/Loading.jsx";
 import Loading2 from "../../miniComponents/Loading2.jsx";
-import {useSelector,useDispatch} from 'react-redux';
-import {counterActions} from '../../redux/store.js';
-
+import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "../../redux/store.js";
+import getUserDetails from "../../apis/getUserDetails.js";
+import getCurrentPrice from "../../apis/getCurrentPrice.js";
+import intialiseSharing from "../../apis/intialiseSharing.js";
+import { userActions,shareActions } from "../../redux/store.js";
+import Error from "./Error.jsx";
 export default function Navbar() {
-  const userDetails = useSelector(state=> state.user.details);
-  console.log("working : ",userDetails);
-  console.log("navbar component");
-  const {state} = useNavigation();
-  const location = useLocation();
+  // get userDetails from redux store
+  const userDetails = useSelector((state) => state.user.details);
+  const sharingDetails = useSelector((state) => state.share);
+  const dispatch = useDispatch();
 
+  // false means still loading
+  // data format -> success : true -> page data loaded successfull , data : {pageData}
+  // data format -> success : false -> redirect -> true... login page
+  // data format -> success : false -> redirect -> false... error page, msg : {errmsg}
+  const [pageData, setPageData] = useState(false);
+
+  // only to set intial page
+  // this goes on above currentPage useState
+  const location = useLocation();
   function getGlowNum(path) {
     let glowNum = 0;
     if (path == "/") glowNum = 1;
@@ -24,8 +36,7 @@ export default function Navbar() {
     else glowNum = 5;
     return glowNum;
   }
-
-  const [page, setPage] = useState({
+  const [currentPage, setCurrentPage] = useState({
     path: location.pathname,
     num: getGlowNum(location.pathname),
   });
@@ -37,47 +48,113 @@ export default function Navbar() {
     navigate("/landing");
   }
   function navFunction(to) {
-    let glowNum = getGlowNum(to);
-    setPage({ path: to, num: glowNum });
-    navigate(to);
+    setPageData(false);
+    setTimeout(()=>{
+      let glowNum = getGlowNum(to);
+      setCurrentPage({ path: to, num: glowNum });
+      navigate(to);
+    },1000);
   }
+
   let bkClassNames = "bk_elements";
-  if(state=="loading") bkClassNames += " loading-bk";
-  if(page.path=="/chart") bkClassNames += " chartBk";
+  if (!pageData) bkClassNames += " loading-bk";
+  if (currentPage.path == "/chart") bkClassNames += " chartBk";
+
+  useEffect(() => {
+    if (currentPage.path == "/") {
+      if (userDetails == null) {
+        async function networkCall() {
+          let myData = await getUserDetails();
+          if (myData.success) {
+            dispatch(userActions.setUserDetails(myData));
+            setPageData({ ...myData });
+          } else if (myData.redirect) logout();
+          else setPageData({ ...myData });
+        }
+        networkCall();
+      } else setPageData({ ...userDetails });
+    } else if (currentPage.path == "/chart") {
+      if (userDetails == null) {
+        async function networkCall() {
+          let myData = await getUserDetails();
+          if (myData.success) {
+            dispatch(userActions.setUserDetails(myData));
+            let priceResponse = await getCurrentPrice();
+            console.log("priceResponse : ", priceResponse);
+            if (priceResponse.success) {
+              console.log("yessssssssssssssssssssssssssssssssssssssssssss");
+              setPageData({ ...myData, price: priceResponse.price });
+            } else {
+              console.log("no-----------------------------------------------");
+              setPageData({ ...priceResponse });
+            }
+            // setPageData({...myData});
+          } else if (myData.redirect) logout();
+          else setPageData({ ...myData });
+        }
+        networkCall();
+      } else {
+        async function networkCall() {
+          let priceResponse = await getCurrentPrice();
+          if (priceResponse.success) {
+            setPageData({ ...userDetails, price: priceResponse.price });
+          } else {
+            setPageData({ ...priceResponse });
+          }
+        }
+        networkCall();
+      }
+    } else if (currentPage.path== "/share"){
+      if(sharingDetails.loaded){
+        setPageData({...sharingDetails,success:true});
+      } else {
+        async function networkCall(){
+          const response = await intialiseSharing();
+          if(response.success){
+            dispatch(shareActions.intialise(response));
+            setPageData({success : true});
+          } else if (response.redirect) logout();
+          else setPageData({...response});
+        }
+        networkCall();
+      }
+    }
+  }, [currentPage]);
+
   return (
     <div id="authPages">
       <div id="navbar">
         <div id="navIcons">
-          <div id="glower_wrapper" className={"glow" + page.num}>
+          <div id="glower_wrapper" className={"glow" + currentPage.num}>
             <div id="glower"></div>
           </div>
           <ImageHolder
             name="homeIcon.png"
-            isActive={page.path == "/"}
+            isActive={currentPage.path == "/"}
             clickHandler={() => navFunction("/")}
           />
           {/* <ImageHolder name="chartIcon.png" isActive={page.path=="/chart"} to="/chart" /> */}
           <ImageHolder
             name="chartIcon.png"
-            isActive={page.path == "/chart"}
+            isActive={currentPage.path == "/chart"}
             clickHandler={() => navFunction("/chart")}
           />
           {/* <ImageHolder name="shareIcon.png" isActive={page.path=="/share"} to="/share" /> */}
           <ImageHolder
             name="shareIcon.png"
-            isActive={page.path == "/share"}
+            isActive={currentPage.path == "/share"}
             clickHandler={() => navFunction("/share")}
           />
           {/* <ImageHolder name="historyIcon.png" isActive={page.path=="/history"} to="/history" /> */}
           <ImageHolder
             name="historyIcon.png"
-            isActive={page.path == "/history"}
+            isActive={currentPage.path == "/history"}
             clickHandler={() => navFunction("/history")}
           />
           {/* <ImageHolder name="userIcon.png" isActive={page.path=="/users"} to="/users" /> */}
           <ImageHolder
             name="userIcon.png"
-            isActive={page.path == "/users"}
+            isActive={currentPage.path == "/users"}
             clickHandler={() => navFunction("/users")}
           />
         </div>
@@ -89,7 +166,15 @@ export default function Navbar() {
         {/* <span id="ball" className={bkClassNames}>
           <Ball /></span> */}
         <div id="authPage_wrapper">
-          {state!=="loading"? <Outlet /> : <Loading2 />}
+          {pageData ? (
+            pageData.success ? (
+              <Outlet context={pageData} />
+            ) : (
+              <Error msg={pageData.msg} />
+            )
+          ) : (
+            <Loading2 />
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@ import { Fragment, useState } from "react";
 import useAnimate from "../Hooks/useAnimate";
 
 export default function Transect({ profit, showSell, price, totalCoins }) {
+  let vari = { profit, showSell, price, totalCoins };
+  console.log("vari : ",vari);
   const [state, setState] = useState("default");
   const [coinsState, set_coinsState] = useState(totalCoins);
   const [myError, setError] = useState(null);
