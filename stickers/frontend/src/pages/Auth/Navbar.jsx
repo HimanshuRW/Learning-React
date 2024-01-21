@@ -10,7 +10,7 @@ import { counterActions } from "../../redux/store.js";
 import getUserDetails from "../../apis/getUserDetails.js";
 import getCurrentPrice from "../../apis/getCurrentPrice.js";
 import intialiseSharing from "../../apis/intialiseSharing.js";
-import { userActions,shareActions } from "../../redux/store.js";
+import { userActions, shareActions } from "../../redux/store.js";
 import Error from "./Error.jsx";
 export default function Navbar() {
   // get userDetails from redux store
@@ -49,11 +49,9 @@ export default function Navbar() {
   }
   function navFunction(to) {
     setPageData(false);
-    setTimeout(()=>{
-      let glowNum = getGlowNum(to);
-      setCurrentPage({ path: to, num: glowNum });
-      navigate(to);
-    },1000);
+    let glowNum = getGlowNum(to);
+    setCurrentPage({ path: to, num: glowNum });
+    navigate(to);
   }
 
   let bkClassNames = "bk_elements";
@@ -104,17 +102,17 @@ export default function Navbar() {
         }
         networkCall();
       }
-    } else if (currentPage.path== "/share"){
-      if(sharingDetails.loaded){
-        setPageData({...sharingDetails,success:true});
+    } else if (currentPage.path == "/share") {
+      if (sharingDetails.loaded) {
+        setPageData({ ...sharingDetails, success: true });
       } else {
-        async function networkCall(){
+        async function networkCall() {
           const response = await intialiseSharing();
-          if(response.success){
+          if (response.success) {
             dispatch(shareActions.intialise(response));
-            setPageData({success : true});
+            setPageData({ success: true });
           } else if (response.redirect) logout();
-          else setPageData({...response});
+          else setPageData({ ...response });
         }
         networkCall();
       }
