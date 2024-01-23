@@ -1,0 +1,210 @@
+:root {
+    /* medium */
+    /* --tublight: #3b42d4; */
+
+    /* orginal */
+    /* --tublight: #3586fe; */
+
+    /* up */
+    --tublight  : #1da9fe;
+    --from      : #1c4789;
+    --to        : #13325f;
+    --curve     : 13px;
+    --time      : 0.2s;
+    --myPink    : #e328ef;
+    /* font-size: 10px;    */
+
+    /* Set neon color */
+    --neon-text-color  : #f40;
+    --neon-border-color: #08f;
+    --blocks           : #212245;
+    --dullWhite        : #8988d1;
+    --activeWhite      : rgb(225, 213, 255);
+    --myWhite          : rgb(191, 191, 208);
+    --dullbtn          : #383764;
+    --start            : #6325ad;
+    --mid              : #3e3ec8;
+    --end              : rgb(5, 121, 234);
+    /* --end           : rgb(79, 167, 255); */
+    --myPink           : #e328ef;
+    --darkbtn          : #2e2e52;
+    --success          : rgb(144, 238, 144);
+    --fail             : rgb(255, 99, 71);
+    --gold             : #ffd700;
+    --loadingColor     : var(--dullWhite);
+}
+
+.pageWrapper {
+    display        : flex;
+    width          : 100%;
+    justify-content: space-between;
+    align-items    : flex-start;
+    padding        : 2rem;
+    display: flex;
+    /* border         : 1px solid sandybrown; */
+}
+
+.container {
+    position: relative;
+    width   : 100%;
+    /* border  : 1px solid #08f; */
+}
+
+.container:nth-child(1) {
+    width: 50%;
+    z-index: 8;
+}
+
+.container:nth-child(2) {
+    width: 55%;
+    z-index: 6;
+}
+
+
+h2 {
+    margin-bottom: 2rem;
+}
+
+.card {
+    background     : var(--blocks);
+    width          : 80%;
+    height         : 4rem;
+    padding        : 1rem;
+    font           : 1rem !important;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    margin         : 1rem auto;
+    border-radius  : 0.5rem;
+    border         : 2px solid transparent;
+    transition     : all 0.2s linear;
+    opacity        : 0.8;
+}
+
+.card .name {
+    color     : var(--myWhite);
+    transition: all 0.2s linear;
+}
+
+.card:hover {
+    opacity: 1;
+}
+
+.card:hover .name {
+    color: #fff;
+}
+
+.card .request {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+button {
+    border       : 2px solid var(--dullWhite);
+    outline      : none;
+    background   : transparent;
+    padding      : 0.8rem;
+    border-radius: 1rem;
+    cursor       : pointer;
+    transition   : all 0.3s linear;
+}
+
+.give {
+    color: var(--success);
+}
+
+.give:hover {
+    color     : var(--gold);
+    border    : 2px solid var(--success);
+    box-shadow: 0px 0px 7px 1px var(--success);
+}
+
+.reject {
+    color      : var(--fail);
+    margin-left: 1rem;
+}
+
+.reject:hover {
+    border    : 2px solid var(--fail);
+    box-shadow: 0px 0px 9px 0px var(--fail);
+}
+
+button img {
+    height: 0.8rem;
+}
+
+p img {
+    height: 1rem;
+}
+
+.send_request_container {
+    margin  : 5rem;
+    position: relative;
+}
+
+.requestList {
+    width     : 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.requestList::-webkit-scrollbar {
+    width: 10px;
+}
+
+.requestList::-webkit-scrollbar-track {
+    background: var(--blocks);
+}
+
+.requestList::-webkit-scrollbar-thumb {
+    background-color: var(--from);
+    border-radius   : 20px;
+}
+
+.shift{
+    position: absolute;
+    color: var(--gold);
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.container:nth-child(2) > h2{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.containerData{
+    position: absolute;
+    width: 100%;
+    top: 4rem;
+}
+.slide{
+    transition: all 0.2s linear;
+}
+.show{
+    opacity: 1;
+    transform: translateX(0px);
+}
+.hide_right{
+    opacity: 0;
+    transform: translateX(100%);
+    cursor: default !important;
+}
+.hide_left{
+    opacity: 0;
+    cursor: default !important;
+    transform: translateX(-100%);
+}
+.msg {
+    position : absolute;
+    top      : 40px;
+    left     : 50%;
+    transform: translateX(-50%);
+}
+.success{
+    color    : var(--success);
+}
+.fail {
+    color : var(--fail);
+}

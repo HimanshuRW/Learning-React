@@ -19,11 +19,23 @@ export default async function sharingDetails() {
                 {name : "Avinash Rw", coins : 2},
                 {name : "Advitiya", coins : 5},
                 {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3}
             ],
             askedTo : [
                 {name : "Avinash Rw", coins : 2},
                 {name : "Advitiya", coins : 5},
                 {name : "Nikunj", coins : 3},
+                
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3},
+                {name : "Nikunj", coins : 3}
             ] 
         }
         return {

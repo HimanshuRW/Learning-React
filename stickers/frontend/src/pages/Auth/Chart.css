@@ -1,21 +1,3 @@
-:root {
-    --blocks      : #212245;
-    --dullWhite   : #8988d1;
-    --activeWhite : rgb(225, 213, 255);
-    --myWhite     : rgb(191, 191, 208);
-    --dullbtn     : #383764;
-    --start       : #6325ad;
-    --mid         : #3e3ec8;
-    --end         : rgb(5, 121, 234);
-    /* --end         : rgb(79, 167, 255); */
-    --myPink      : #e328ef;
-    --darkbtn     : #2e2e52;
-    --success     : rgb(144, 238, 144);
-    --fail        : rgb(255, 99, 71);
-    --gold : #ffd700;
-    --loadingColor: var(--dullWhite);
-}
-
 #chartPage {
     display        : flex;
     justify-content: space-around;

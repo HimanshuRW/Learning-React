@@ -104,7 +104,8 @@ export default function Navbar() {
       }
     } else if (currentPage.path == "/share") {
       if (sharingDetails.loaded) {
-        setPageData({ ...sharingDetails, success: true });
+        // setPageData({ ...sharingDetails, success: true });
+        setPageData({ success: true });
       } else {
         async function networkCall() {
           const response = await intialiseSharing();

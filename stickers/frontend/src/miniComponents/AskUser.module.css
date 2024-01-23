@@ -1,0 +1,138 @@
+:root {
+    /* medium */
+    /* --tublight: #3b42d4; */
+
+    /* orginal */
+    /* --tublight: #3586fe; */
+
+    /* up */
+    --tublight  : #1da9fe;
+    --from      : #1c4789;
+    --to        : #13325f;
+    --curve     : 13px;
+    --time      : 0.2s;
+    --myPink    : #e328ef;
+    /* font-size: 10px;    */
+
+    /* Set neon color */
+    --neon-text-color  : #f40;
+    --neon-border-color: #08f;
+    --blocks           : #212245;
+    --dullWhite        : #8988d1;
+    --activeWhite      : rgb(225, 213, 255);
+    --myWhite          : rgb(191, 191, 208);
+    --dullbtn          : #383764;
+    --start            : #6325ad;
+    --mid              : #3e3ec8;
+    --end              : rgb(5, 121, 234);
+    /* --end           : rgb(79, 167, 255); */
+    --myPink           : #e328ef;
+    --darkbtn          : #2e2e52;
+    --success          : rgb(144, 238, 144);
+    --fail             : rgb(255, 99, 71);
+    --gold             : #ffd700;
+    --loadingColor     : var(--dullWhite);
+}
+#search_conatiner{
+    width: 80%;
+    height: 100%;
+    /* border: 1px solid whitesmoke; */
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#search_input_wrapper{
+    width: 80%;
+    border-radius: 1.4rem;
+    /* background-color: olivedrab; */
+    border: 2px solid var(--dullWhite); 
+    height: 3rem;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 0px 0px 3rem;
+    position: relative;
+}
+#search_input_wrapper::after{
+    content: '';
+    height: 100%;
+    width: 3rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url("http://localhost:3000/imgs/search1.png");
+    background-size: 40%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#search_input_wrapper input {
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    background: transparent;
+    font-size: 1.1rem;
+    color: var(--myWhite);
+    border: none;
+    outline: none;
+}
+#suggestionList{
+    margin-top: 0.7rem;
+    padding: 0 0.7rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+#suggestionList::-webkit-scrollbar {
+    width: 10px;
+}
+
+#suggestionList::-webkit-scrollbar-track {
+    background: var(--blocks);
+}
+
+#suggestionList::-webkit-scrollbar-thumb {
+    background-color: var(--from);
+    border-radius   : 20px;
+}
+
+.suggestion{
+    width: 80%;
+    display: flex;
+    padding: 0.5rem;
+    margin-top: 0px auto;
+    color: var(--myWhite);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to right , rgba(255, 255, 255,0.1),rgba(255, 255, 255,0.12));
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.2s linear;
+}
+.suggestion:hover{
+    color: #fff;
+    background: linear-gradient(to right , rgba(255, 255, 255,0.2),rgba(255, 255, 255,0.22));
+}
+.suggestion span:nth-child(2){
+    position: relative;
+    transform: translateX(-1.3rem);
+}
+.suggestion span:nth-child(2)::after{
+    content: '';
+    height: 100%;
+    width: 2rem;
+    position: absolute;
+    left: 85%;
+    top: 0;
+    background: url("http://localhost:3000/imgs/ethereumWhite.png");
+    background-size: 40%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
