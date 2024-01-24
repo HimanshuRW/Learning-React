@@ -16,26 +16,20 @@ export default async function sharingDetails() {
 
         let sharingData = {
             giveTo : [
-                {name : "Avinash Rw", coins : 2},
-                {name : "Advitiya", coins : 5},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3}
+                {name : "Rajat", coins : 2, id:71},
+                {name : "Nikunj", coins : 1, id:72},
+                {name : "Koaml", coins : 3, id:73},
+                {name : "Harry", coins : 3, id:75},
+                {name : "Potter", coins : 5, id:74},
+                {name : "Hagred", coins : 4, id:76},
+                {name : "Yash", coins : 1, id:77},
+                {name : "Animesh", coins : 2, id:78},
+                {name : "Advitiya", coins : 3, id:79}
             ],
             askedTo : [
-                {name : "Avinash Rw", coins : 2},
-                {name : "Advitiya", coins : 5},
-                {name : "Nikunj", coins : 3},
-                
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3},
-                {name : "Nikunj", coins : 3}
+                {name : "Avinash Rw", coins : 2, id:201},
+                {name : "Advitiya", coins : 5, id:202},
+                {name : "Nikunj", coins : 3, id:203}
             ] 
         }
         return {

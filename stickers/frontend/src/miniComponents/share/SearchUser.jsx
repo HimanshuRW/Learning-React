@@ -7,16 +7,10 @@ import debounce from "../../helpers/debounce.js";
 import { useDispatch, useSelector } from "react-redux";
 import { askCoinsActions } from "../../redux/store.js";
 
-// what i wana do is as u empty the input
-// the await wala thing later get complete and show thw error
-// so that can be done by managing a state
-// like state will be updated at every key stroke
-// and like if state is empty string ... we will simple not show anything even if await is over
-// may be/... may be.. u need take complete control over inot and onKeydown event and preventing default behaviour
-
 export default function SearchUser() {
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.askCoins.msg);
+  const askedToArr = useSelector((state) => state.share.askedTo);
   console.log("msg : ", msg);
   const [myUsers, setMyUsers] = useState([]);
   const myInput = useRef();
@@ -26,17 +20,35 @@ export default function SearchUser() {
   }
 
   function askFrom(details){
-    if(details.coins!==undefined)
-      dispatch(askCoinsActions.askFrom(details));
+    if(details.coins!==undefined){
+      let asked = false;
+      console.log(details);
+      askedToArr.forEach(personObj => {
+        if(personObj.id==details.id){
+          asked = true;
+        }
+      });
+
+      if(asked){
+        dispatch(askCoinsActions.setMsg({
+          success: false, msg:`Already sent request to ${details.name}`
+        }));
+      }else {
+        myInput.current.value="";
+        setMyUsers([]);
+        dispatch(askCoinsActions.askFrom(details));
+      }
+    }
   }
 
   async function update_myUsers() {
     let keyword = myInput.current.value;
+    if(msg!==null) setMsg(null);
+
     if (keyword.length > 0) {
       let response = await getUsers(keyword);
       console.log("response : ", response);
       if (response.success) {
-        if (msg !== null) setMsg(null);
         if (response.usersList.length > 0) setMyUsers(response.usersList);
         else setMyUsers([{ name: "No users found..." }]);
       } else {
@@ -49,14 +61,10 @@ export default function SearchUser() {
           });
           setMyUsers([{ name: "No users found..." }]);
         } else {
-          if(msg!==null) setMsg(null);
           setMyUsers([]);
         }
       }
     } else {
-      console.log("yesssssss -1 ");
-      console.log("yes 1 msg : ", msg);
-      if (msg !== null) setMsg(null);
       setMyUsers([]);
     }
     console.log("yessssssssss -0");

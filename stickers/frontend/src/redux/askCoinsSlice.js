@@ -12,13 +12,14 @@ const askCoinsSlice = createSlice({
             state.msg = data.payload;
         },
         setComp(state,data){
-            state.comp = data.payload;
             state.msg = null;
+            state.comp = data.payload;
         },
         askFrom(state,data){
+            state.msg = null;
             state.comp = "ask";
             state.userData = data.payload;
-        }
+        },
     }
 });
 

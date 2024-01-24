@@ -5,7 +5,8 @@ import UpperPart from '../../miniComponents/share/UpperPart.jsx';
 import { useSelector } from "react-redux";
 import AskUser from "../../miniComponents/share/AskUser.jsx";
 
-export default function OutGoingRequestContainer({ myArr, styles }) {
+export default function OutGoingRequestContainer({ styles }) {
+  console.log("OutGoingRequestContainer");
   return (
     <div className={styles.container}>
       <Msg styles={styles} />
@@ -14,7 +15,6 @@ export default function OutGoingRequestContainer({ myArr, styles }) {
       {/* Sent  */}
       <Container madeFor="sent" styles={styles}>
         <OutGoingRequestList
-          myArr={myArr}
           styles={styles}
         />
       </Container>

@@ -23,8 +23,6 @@ so action can return redirect home
 
 
 
-
-
 // socket
 emit newprice value as someone buy or sell coin , and this would case rerender of side part with new value of coin
 // socket - graph

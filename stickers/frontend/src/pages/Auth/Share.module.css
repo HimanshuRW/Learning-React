@@ -123,6 +123,22 @@ button {
     color      : var(--fail);
     margin-left: 1rem;
 }
+.rejectBtnLoading{
+    border: 2px solid var(--fail);
+    border-left-color: transparent;
+    animation: rotate 1s ease-out infinite forwards;
+    margin: 0px 1.66rem;
+}
+.giveBtnLoading{
+    border: 2px solid var(--success);
+    border-left-color: transparent;
+    animation: rotate 1s ease-out infinite forwards;
+    margin: 0px 1.66rem;
+}
+@keyframes rotate {
+    0%{ transform:  rotateZ(0deg);}
+    100%{ transform:  rotateZ(360deg);}
+}
 
 .reject:hover {
     border    : 2px solid var(--fail);

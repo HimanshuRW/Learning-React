@@ -1275,6 +1275,11 @@
         "id": 364
     },
     {
+        "name" : "Mummy ji",
+        "coins" : 30,
+        "id":1
+    },
+    {
         "name": "Danniel",
         "coins": 83,
         "id": 365
