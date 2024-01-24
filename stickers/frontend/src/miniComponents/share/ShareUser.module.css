@@ -136,3 +136,19 @@
     background-position: center center;
     background-repeat: no-repeat;
 }
+.slide{
+    transition: all 0.2s linear;
+}
+
+.show{
+    transform: translateX(0px);
+    opacity: 1;
+}
+.hideLeft{
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.hideRight{
+    transform: translateX(100%);
+    opacity: 0;
+}

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import Loading from "../../miniComponents/Loading.jsx";
 import Loading2 from "../../miniComponents/Loading2.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "../../redux/store.js";
 import getUserDetails from "../../apis/getUserDetails.js";
 import getCurrentPrice from "../../apis/getCurrentPrice.js";
 import intialiseSharing from "../../apis/intialiseSharing.js";

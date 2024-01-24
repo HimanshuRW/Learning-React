@@ -11,6 +11,7 @@ export default async function getUsers(keyword) {
     } catch (error) {
         // return {success : false , msg : "Not able to connect Server.. Try Later !"};
 
+        // sorting logic 
         let mykeyword = new RegExp(keyword,'i');
         let myResponse = await fetch("http://localhost:3000/db/users.json");
         let data = await myResponse.json();
