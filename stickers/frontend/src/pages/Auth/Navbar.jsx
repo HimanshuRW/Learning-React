@@ -15,6 +15,7 @@ export default function Navbar() {
   // get userDetails from redux store
   const userDetails = useSelector((state) => state.user.details);
   const sharingDetails = useSelector((state) => state.share);
+  const historyDeatils = useSelector((state)=> state.history.historyArr)
   const dispatch = useDispatch();
 
   // false means still loading
@@ -102,6 +103,21 @@ export default function Navbar() {
         networkCall();
       }
     } else if (currentPage.path == "/share") {
+      if (sharingDetails.loaded) {
+        // setPageData({ ...sharingDetails, success: true });
+        setPageData({ success: true });
+      } else {
+        async function networkCall() {
+          const response = await intialiseSharing();
+          if (response.success) {
+            dispatch(shareActions.intialise(response));
+            setPageData({ success: true });
+          } else if (response.redirect) logout();
+          else setPageData({ ...response });
+        }
+        networkCall();
+      }
+    } else if (currentPage.path=="/history"){
       if (sharingDetails.loaded) {
         // setPageData({ ...sharingDetails, success: true });
         setPageData({ success: true });
