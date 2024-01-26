@@ -34,7 +34,7 @@ function Msg({ styles }) {
 function IncomingReqestList({ styles }) {
   const myArr = useSelector((state) => state.share.giveTo);
   return (
-    <div className={styles.requestList}>
+    <div className={styles.requestList+" myScroll"}>
       {myArr.map((personObj) => {
         return (
           <div className={styles.card} key={"card"+personObj.id}>

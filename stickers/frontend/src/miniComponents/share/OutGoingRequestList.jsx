@@ -7,7 +7,7 @@ export default function OutGoingRequestList({ styles }) {
   const myArr = useSelector(state=>state.share.askedTo);
   console.log("OutGoingRequestList myArr : ",myArr);
   return (
-    <div className={styles.requestList}>
+    <div className={styles.requestList + " myScroll"}>
       {myArr.map((personObj) => {
         return (
           <div className={styles.card} key={personObj.id}>

@@ -309,3 +309,19 @@
     opacity  : 0;
     transform: translateX(-50px);
 }
+
+.myScroll{
+    overflow-y: auto;
+}
+.myScroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.myScroll::-webkit-scrollbar-track {
+    background: var(--blocks);
+}
+
+.myScroll::-webkit-scrollbar-thumb {
+    background-color: var(--from);
+    border-radius   : 20px;
+}

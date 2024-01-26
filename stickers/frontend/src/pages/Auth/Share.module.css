@@ -161,19 +161,6 @@ p img {
 .requestList {
     width     : 90%;
     max-height: 70vh;
-    overflow-y: auto;
-}
-.requestList::-webkit-scrollbar {
-    width: 10px;
-}
-
-.requestList::-webkit-scrollbar-track {
-    background: var(--blocks);
-}
-
-.requestList::-webkit-scrollbar-thumb {
-    background-color: var(--from);
-    border-radius   : 20px;
 }
 
 .shift{

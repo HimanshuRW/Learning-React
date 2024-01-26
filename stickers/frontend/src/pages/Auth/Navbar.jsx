@@ -9,13 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 import getUserDetails from "../../apis/getUserDetails.js";
 import getCurrentPrice from "../../apis/getCurrentPrice.js";
 import intialiseSharing from "../../apis/intialiseSharing.js";
-import { userActions, shareActions } from "../../redux/store.js";
+import initialiseHistory from "../../apis/initialiseHistory.js";
+import { userActions, shareActions ,historyActions} from "../../redux/store.js";
 import Error from "./Error.jsx";
 export default function Navbar() {
   // get userDetails from redux store
   const userDetails = useSelector((state) => state.user.details);
   const sharingDetails = useSelector((state) => state.share);
-  const historyDeatils = useSelector((state)=> state.history.historyArr)
+  const historyArr = useSelector((state)=> state.history.historyArr);
   const dispatch = useDispatch();
 
   // false means still loading
@@ -118,14 +119,13 @@ export default function Navbar() {
         networkCall();
       }
     } else if (currentPage.path=="/history"){
-      if (sharingDetails.loaded) {
-        // setPageData({ ...sharingDetails, success: true });
+      if (historyArr!==null) {
         setPageData({ success: true });
       } else {
         async function networkCall() {
-          const response = await intialiseSharing();
+          const response = await initialiseHistory();
           if (response.success) {
-            dispatch(shareActions.intialise(response));
+            dispatch(historyActions.initalise(response.historyArray));
             setPageData({ success: true });
           } else if (response.redirect) logout();
           else setPageData({ ...response });
