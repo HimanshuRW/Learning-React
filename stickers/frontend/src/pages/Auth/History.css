@@ -38,7 +38,7 @@
     margin: 2rem auto;
     position: relative;
     z-index: 6;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 .histroyContainer > p{
     position: absolute;
@@ -61,4 +61,7 @@
 .given{
     /* border: 1px solid var(--fail); */
     box-shadow: 0px 0px 15px -2px var(--fail);
+}
+.centerCard{
+    border: 2px solid var(--gold);
 }

@@ -6,7 +6,7 @@ export default function History() {
     <div className="histroyContainer">
         <h1>History</h1>
       {historyArr.length > 0 ? null : <p>No histroy Data found</p>}
-      <div className="myScroll wrapper">
+      <div className="wrapper">
         {historyArr.map((historyData) => (
             <div className={"wrapperItem "+historyData.status}>
             <h3>{historyData.name}</h3>
