@@ -5,7 +5,6 @@ import Landing,{action as landingAction} from './pages/unAuth/Landing.jsx';
 import Navbar from './pages/Auth/Navbar.jsx';
 import Home from "./pages/Auth/Home.jsx";
 import History from './pages/Auth/History.jsx';
-import Users from './pages/Auth/Users.jsx';
 import Share from './pages/Auth/Share.jsx';
 import Chart from './pages/Auth/ChartPage.jsx';
 import './App.css';
@@ -21,7 +20,6 @@ const router = createBrowserRouter([
       { path : '/chart', element : <Chart />},
       { path : '/share', element : <Share /> },
       { path : '/history',element: <History /> },
-      { path : '/users', element : <Users /> }
     ]
   },
   {

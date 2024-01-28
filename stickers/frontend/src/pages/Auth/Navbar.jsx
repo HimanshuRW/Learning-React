@@ -165,12 +165,6 @@ export default function Navbar() {
             isActive={currentPage.path == "/history"}
             clickHandler={() => navFunction("/history")}
           />
-          {/* <ImageHolder name="userIcon.png" isActive={page.path=="/users"} to="/users" /> */}
-          <ImageHolder
-            name="userIcon.png"
-            isActive={currentPage.path == "/users"}
-            clickHandler={() => navFunction("/users")}
-          />
         </div>
         <img src="/imgs/logoutIcon.png" alt="" onClick={logout} />
       </div>
