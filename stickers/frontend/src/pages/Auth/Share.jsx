@@ -10,3 +10,8 @@ export default function Share() {
     </div>
   );
 }
+
+export function loader(){
+  console.log("loader function of Share page");
+  return null;
+}

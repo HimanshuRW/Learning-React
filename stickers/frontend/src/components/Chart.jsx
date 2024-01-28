@@ -5,8 +5,10 @@ import getChartData from "../apis/getChartData.js";
 export default function Chart({avg}){
     const [range,setRange] = useState("day");
     const [grapghData,set_graphData] = useState(null);
+    console.log("cahrt component rendering");
 
     useEffect(()=>{
+        console.log("usse effect of chart component");
         set_graphData(null);
         async function getData(){
             try {
@@ -45,5 +47,6 @@ function LoadingGraph(){
     return <div class="dot-revolution"></div>
 }
 function Err({msg}){
+    console.log("msg shown");
     return <div class="chartErr">Error : {msg}</div>
 }

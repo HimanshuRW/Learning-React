@@ -1,0 +1,24 @@
+body{
+  width: 100%;
+  height : 100vh;
+  display: grid;
+  place-items: center;
+  background: black;
+}
+
+button{
+  padding: 1rem 2rem;
+  border: 3px solid orange;
+  background: transparent;
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: orange;
+  outline: none;
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+button:hover{
+  border: 3px solid rgb(35, 142, 81);
+  color: rgb(35, 142, 81);
+}
