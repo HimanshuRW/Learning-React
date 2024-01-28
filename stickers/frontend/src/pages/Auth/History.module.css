@@ -52,16 +52,55 @@
     width: 100%;
     padding: 0 2rem 0 1rem;
 }
+.wrapperItem:hover{
+    backdrop-filter: blur(0.41rem);
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0px 0px 16px -2px var(--tublight);
+}
 .wrapperItem{
     width: 100%;
-    border: 1px solid var(--fail);
+    border: 2px solid var(--neon-border-color);
     margin-bottom: 1rem;
-    backdrop-filter: blur(0.41rem);
+    backdrop-filter: blur(0.1rem);
+    background: rgba(0,0,0,0.2);
+    border-radius: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 1rem;
+    position: relative;
+    transition: all 0.1s linear;
 }
-.given{
-    /* border: 1px solid var(--fail); */
-    box-shadow: 0px 0px 15px -2px var(--fail);
+/* .rates {
+    color : var(--gold);
+    display: flex;
+    align-items: center;
+} */
+ .coins{
+    position: absolute;
+    margin-right: 2rem;
+    left: 45%;
+    transform: translate(-100%);
+    color: var(--gold);
 }
-.centerCard{
-    border: 2px solid var(--gold);
+ .coins::before{
+    content: '';
+    position: absolute;
+    width: 0.7rem;
+    height: 1rem;
+    background: url("http://localhost:3000/imgs/ethereumGold.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.price{
+    position: absolute;
+    left: 55%;
+    color: var(--gold);
+}
+.date{
+    color: var(--myWhite);
 }

@@ -1,22 +1,18 @@
 import { useSelector } from "react-redux";
-import "./History.css";
+import styles from "./History.module.css";
 export default function History() {
   let historyArr = useSelector((state) => state.history.historyArr);
   return (
-    <div className="histroyContainer">
-        <h1>History</h1>
+    <div className={styles.histroyContainer}>
+      <h1>History</h1>
       {historyArr.length > 0 ? null : <p>No histroy Data found</p>}
-      <div className="wrapper">
+      <div className={styles.wrapper+"  myScroll"}>
         {historyArr.map((historyData) => (
-            <div className={"wrapperItem "+historyData.status}>
+          <div className={styles.wrapperItem}>
             <h3>{historyData.name}</h3>
-            <div className="wrapperRight">
-              <div className="rates">
-                <p className="coins">{historyData.coins}</p>
-                <p className="price">{historyData.price}</p>
-              </div>
-              <p className="date">{historyData.date}</p>
-            </div>
+              <p className={styles.coins}>{historyData.coins}</p>
+              <p className={styles.price}>₹ {historyData.price}</p>
+            <p className={styles.date}>{historyData.date}</p>
           </div>
         ))}
       </div>
