@@ -8,7 +8,7 @@ export default function WelcomePage() {
   const yCity = useTransform(scrollY,[0,200],[0,-100]);
   const yHero = useTransform(scrollY,[0,200],[0,-150]);
   const opacityHero = useTransform(scrollY,[0,300,500],[1,1,0]);
-  const opacityCity = useTransform(scrollY,[0,200,300,500],[1,0.5,0.5,0]);
+  const opacityCity = useTransform(scrollY,[0,200,300,500],[1,0.5,0.4,0]);
   return (
     <>
       <header id="welcome-header">
