@@ -2,19 +2,34 @@ import Visual from './components/Visual.jsx';
 import Controls from './components/Controls.jsx';
 import Choice from './components/Choice.jsx';
 import { useState, useRef } from 'react';
+import forge from 'node-forge';
+
+const publicKeyPem = `-----BEGIN PUBLIC KEY-----\nYOUR_PUBLIC_KEY_HERE\n-----END PUBLIC KEY-----`;
+
+const encryptData = (data) => {
+  const publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
+  const encrypted = publicKey.encrypt(data, 'RSA-OAEP', {
+    md: forge.md.sha256.create(),
+  });
+  return forge.util.encode64(encrypted); // Encrypted data in base64
+};
+
 
 import './App.css';
 
-let intial_array = [11,5, 3, 8, 2, 7, 1,-1, 6, 8,1,-2];
+let intial_array = [11, 5, 3, 8, 2, 7, 1, -1, 6, 8, 1, -2];
 let wait = 800;
 
-let intial_state = { array: [...intial_array], iteration: 0, step: 0, playing : false };
+let intial_state = { array: [...intial_array], iteration: 0, step: 0, playing: false };
 
 let myTimer;
 
 function App() {
   const [current_state, set_state] = useState(intial_state);
   let timer = useRef();
+
+  const encryptedData = encryptData('Hello, encrypt this!');
+  console.log("encryptedData : ", encryptedData); // Send to the backend
 
   function bubble() {
     let arr = [...current_state.array];
@@ -33,11 +48,11 @@ function App() {
   };
   // bubble();
 
-  if(current_state.playing){
-    myTimer = setTimeout(sorting,wait);
+  if (current_state.playing) {
+    myTimer = setTimeout(sorting, wait);
   }
 
-  function update(arr,iteration,step,playing) {
+  function update(arr, iteration, step, playing) {
     set_state({ array: [...arr], iteration, step, playing });
   }
 
@@ -47,7 +62,7 @@ function App() {
 
   function stopSorting() {
     clearTimeout(myTimer);
-    set_state({...current_state,playing:false});
+    set_state({ ...current_state, playing: false });
   }
 
   // sort and update the array
@@ -61,20 +76,20 @@ function App() {
       arr[i + 1] = temp;
     }
 
-    if (j < arr.length-1) {
+    if (j < arr.length - 1) {
       // both loops keep going
-      if( i < arr.length - j - 2){
+      if (i < arr.length - j - 2) {
         // simple i++,, no chnage in j
         i++;
       } else {
         // i set to 0 and j++
-        i=0;
+        i = 0;
         j++;
       }
-      update(arr,j, i, true);
+      update(arr, j, i, true);
     }
     else {
-      update(intial_array,0, 0, false);
+      update(intial_array, 0, 0, false);
     }
   }
   return (

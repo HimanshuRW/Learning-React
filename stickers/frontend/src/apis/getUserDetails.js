@@ -14,8 +14,8 @@ export default async function getUserDeails() {
         // return {success : false, redirect : false , msg : "Not able to connect Server.. Try Later !"};
         // error page
         let userData = {
-            name: "Himanshu",
-            email: "himanshurw@gmail.com",
+            name: "Girish Porwal",
+            email: "girishporwal07@gmail.com",
             coins: 2,
             avg: 85
         }

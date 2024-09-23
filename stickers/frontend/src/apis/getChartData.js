@@ -2,8 +2,8 @@ const url = "http://localhost:8080/chart/";
 
 const failed = { success: false, msg: "Server Issue... Try again later !" };
 export default async function getChartData(range) {
-    console.log("chart data for "+range);
     try {
+        console.log("chart data for "+range);
         const response = await fetch(url + range);
         if (!response.ok) return failed;
 

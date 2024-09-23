@@ -4,6 +4,8 @@ import Transect from "../../components/Transect.jsx";
 import Chart from "../../components/Chart.jsx";
 import { Fragment, Suspense } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
+import getChartData from "../../apis/getChartData.js";
 
 function SidePart({ data }) {
   let ratio = ((data.price)/(data.avg));
@@ -31,8 +33,11 @@ function SidePart({ data }) {
 }
 
 export default function ChartPage() {
-  const data = useOutletContext();
-
+  const [data, setData] = useState(null);
+  useEffect(async () => {
+    const toset = await getChartData("day");
+    setData(toset);
+  }, []);
   console.log("data --------- ",data);
   return (
     <div id="chartPage">

@@ -16,7 +16,7 @@ export default function Intro({setPage}) {
       <GreyBtn isVisible={isVisible} onClick={() => goto("login")}>
         Login
       </GreyBtn>
-      <p className={`greyText madeby ${animatedown}`}>Made by HimanshuRW</p>
+      <p className={`greyText madeby ${animatedown}`}>Made by Girish</p>
     </div>
   );
 }

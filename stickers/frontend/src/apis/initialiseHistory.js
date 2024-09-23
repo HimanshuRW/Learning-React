@@ -23,15 +23,15 @@ export default async function sharingDetails() {
         let data = [
             { status : "purchased", coins: 2, value : 78, date:"26-01-2024" , price : 200},
             { status : "sold", coins: 2, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 299, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Meenal Rawat",status : "given", coins: 2, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Himanshu Rawat",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Himanshu Rawat",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
-            { name : "Himanshu Rawat",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Mamta",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Congress",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Sonia Ghandi",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Jinah Ali",status : "given", coins: 28, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Nehru",status : "given", coins: 299, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Amit Shah",status : "given", coins: 2, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Girish Porwal",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Naredra Modi",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
+            { name : "Rahul Ghadhi",status : "received", coins: 2, value : 78, date:"26-01-2024" , price : 200},
         ];
         data.forEach(obj=>{
             if(obj.status=="purchased" || obj.status=="sold"){
